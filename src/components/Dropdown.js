@@ -6,9 +6,9 @@ import Dopi from './Dopi';
 import Itogo from './Itogo';
 
 const Dropdown = props => {
-
+        const {clicked} = props.list;
         return(
-            <div className={props.list.collapse ? "container courses_scroll" : "container courses_scroll dead"}>
+            <div className={clicked ? "container courses_scroll" : "container courses_scroll dead"}>
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1 text-center">
                         <div className="card-body card_cours">

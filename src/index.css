@@ -37,6 +37,15 @@ padding-right:inherit !important;
   opacity: 0.5;
 }
 
+.dop-bg-color {
+  background-color: rgb(193, 238, 229);
+}
+
+.boom {
+  display: block;
+  opacity: 1;
+}
+
 /* ----------- */
 
 

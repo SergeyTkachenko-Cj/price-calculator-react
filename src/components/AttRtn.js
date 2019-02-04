@@ -1,13 +1,12 @@
-import React,{Fragment} from "react"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
 
 const AttRtn = props => {
-    const {attestat, rtn} = props.prps.list;
+    const {attestat, rtn, id, attestClick} = props.prps.list;
 
     return(
         <table className="table attest_rtn">
         <tbody>
-            <tr className="dop att">
+            <tr className={attestClick ? "dop att dop-bg-color" : "dop att"}>
                 <td className="text-center txt_resp dop_txt table_lg_screen">
                     Аттестация сотруднков (3&nbsp;чел) 
                     <span className="extra_txt"> ({attestat}&nbsp;р.)</span>
@@ -17,13 +16,17 @@ const AttRtn = props => {
                     <span className="extra_txt"> ({attestat}&nbsp;р.)</span>
                 <br/>
                 <br/>
-                    <button className="btn btn-default add_remove">
-                        <span>Добавить</span>
+                    <button 
+                        onClick={() => props.prps.func(id, 'a')} 
+                        className="btn btn-default add_remove">
+                        <span>{attestClick ? 'Убрать' : 'Добавить'}</span>
                     </button>
                 </td>
                 <td className="text-center lg_screen_btn">
-                    <button className="btn btn-default add_remove">
-                        <span>Добавить</span>
+                    <button 
+                        onClick={() => props.prps.func(id, 'a')} 
+                        className="btn btn-default add_remove">
+                        <span>{attestClick ? 'Убрать' : 'Добавить'}</span>
                     </button>
                 </td>
             </tr>

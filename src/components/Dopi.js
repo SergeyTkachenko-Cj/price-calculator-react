@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 
 const Dopi = props => {
-    const {dopi} = props.prps.list;
+    const {dopi, id, dopiClick} = props.prps.list;
     const arrDopi = [];
 
     const codec = attr => attr
@@ -11,7 +11,7 @@ const Dopi = props => {
 
     for (let x = 0; x < dopi.length; x += 2) {
         arrDopi.push(
-            <tr className="dop" key={x} data-initial-price="1000">
+            <tr className={dopiClick[x] ? "dop dop-bg-color" : "dop"} key={x}>
                 <td className="text-center txt_resp dop_txt table_lg_screen">
                     {codec(dopi[x][0])}
                     <span className="extra_txt"> ({dopi[x][1]} p)</span>
@@ -21,13 +21,17 @@ const Dopi = props => {
                     <span className="extra_txt"> ({dopi[x + 1][1]} p)</span>
                 <br/>
                 <br/>
-                    <button className="btn btn-default add_remove">
-                        <span>Добавить</span>
+                    <button
+                        onClick={() => props.prps.func(id, x)}     
+                        className="btn btn-default add_remove">
+                        <span>{dopiClick[x + 1] ? 'Убрать' : 'Добавить'}</span>
                     </button>
                 </td>
                 <td className="text-center lg_screen_btn">
-                    <button className="btn btn-default add_remove">
-                        <span>Добавить</span>
+                    <button 
+                        onClick={() => props.prps.func(id, x)}                
+                        className="btn btn-default add_remove">
+                        <span>{dopiClick[x] ? 'Убрать' : 'Добавить'}</span>
                     </button>
                 </td>
             </tr>

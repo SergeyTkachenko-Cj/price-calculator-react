@@ -2,47 +2,54 @@ import React, {Component, Fragment} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import List from './List.js';
 import Dropdown from './Dropdown';
+import ButtonSelect from './ButtonSelect';
+import ModalWindow from './ModalWindow';
 
 class DropDownBlock extends Component {
     state = {
         services: List
     }
 
-    handleClick = event => {
-        const newArr = [...this.state.services];
+    handleClick = (id, step) => {
+        const newList = [...this.state.services];
+        const pricing = (clckd, price, fullPrice) => clckd ? fullPrice + price : fullPrice - price;
 
-        newArr.forEach(i => {
-            i.collapse = i.id === event.target.id ? !i.collapse : false;
-            i.clicked = i.id === event.target.id ? !i.clicked : false;
+        newList.forEach(i => {
+            if (step === undefined) {
+                i.clicked = i.id === id ? !i.clicked : false;
+            }
+            else {
+                if (step === 'a') {
+                    i.attestClick = i.id === id ? !i.attestClick : i.attestClick;
+                    i.fullPrice = i.id === id ? pricing(i.attestClick, i.attestat, i.fullPrice) : i.fullPrice;
+                } 
+                else {
+                    i.dopiClick[step] = i.id === id ? !i.dopiClick[step] : i.dopiClick[step];
+                    i.fullPrice = i.id === id ? pricing(i.dopiClick[step], i.dopi[step][1], i.fullPrice) : i.fullPrice;
+                }
+            }
         })
 
-        this.setState({services: newArr});
+        this.setState({services: newList});
     }
 
     render() {
-        const servicesListArr = this.state.services.map((item, index) => 
-                            <Dropdown 
-                                key={index} 
-                                func={this.handleClick}
-                                list={item}
-                            />)
-
-        const buttonsArr = this.state.services.map((item, index) => 
-                            <button 
-                                className={item.clicked ? "btn-clicked cours_btn" : "cours_btn"} 
-                                key={index}  
-                                onClick={item.clicked ? () => false : e => this.handleClick(e)} 
-                                id={item.id}
-                            >{item.id}
-                            </button>
-                            )
+        const f = Param => {
+            return this.state.services.map((item, index) => 
+                <Param 
+                    key={index} 
+                    func={this.handleClick}
+                    list={item} 
+                />
+        )}
 
         return (
             <Fragment>
                 <div className="btns-cvr">
-                    {buttonsArr}
+                    {f(ButtonSelect)}
                 </div>
-                    {servicesListArr}
+                {f(Dropdown)}
+                <ModalWindow />
             </Fragment>
         )
     }
