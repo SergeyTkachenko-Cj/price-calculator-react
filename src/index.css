@@ -623,7 +623,7 @@ h4 {
   border-top-right-radius: 30px;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
-  pointer-events: all;    /* Clickable buts/chevrons covered in extra div for vertical centering */
+  pointer-events: all; 
 }
 
 .modal-body {
@@ -637,7 +637,7 @@ h4 {
   display: table;
   width: 100%;
   height: 100%;
-  pointer-events: none;  /* Clickable outside of the modal to close it */ 
+  pointer-events: none; 
 }
 
 .vertical_align_comfir,
@@ -671,7 +671,7 @@ h4 {
 
 #myCarousel_svid > .carousel-inner > .prev {
   margin: 0 -10px;
-}                                                  /* Gaps between slides */
+}                                               
 
 #myCarousel_svid > .carousel-inner > .next {
   margin: 0 10px;
@@ -704,7 +704,6 @@ h4 {
   border: none;
   color: #2F4858;
 
-  /* background: url(https://i.postimg.cc/QCVFL9Xn/button-close-512.png); */
   background-color: transparent;
   background-size: 50%;
   background-repeat: no-repeat;
@@ -800,12 +799,7 @@ h4 {
   color: #677987;
 }
 
-/*:root .card_head span span:hover { 
-  text-decoration: none \0/IE11;      /* IE11 exception */
-/*}  */                                  
-
-
-.collapsing {                          /* Avoid Safari modal dropdowns flickering */
+.collapsing {                          
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
   -webkit-backface-visibility: hidden;
@@ -1463,7 +1457,7 @@ footer {
 
 /* MEDIA QUERIES */
 
-@media (min-width: 1099px) {
+/* @media (min-width: 1099px) {
 
 #narrow_content_cvr_lg {
   width: 70%;
@@ -1501,8 +1495,6 @@ body .buorg, #warn_too_small {
 .proper_scroll#contact_me_scroll {
   top: 0.78125vw;
 }
-
-/* Navbar */
 
 .navbar {
   -webkit-box-shadow: 0 0 0.9375vw 0.234375vw #D3D3D3;
@@ -1559,9 +1551,6 @@ a.link_icon.scroll span {
   margin-top: 2.1vw;
 }
 
-
-/* Slider */
-
 .slider_pix {
   margin-top: 7.64331204vw;
 }
@@ -1585,9 +1574,6 @@ div.col-xs-4 p.text-center.points {
 .glyphicon-menu-left, .glyphicon-menu-right {
   font-size: 1.5625vw;
 }
-
-
-/* About me */
 
 .about_me_cover {    
   width: 70vw;
@@ -1617,9 +1603,6 @@ div.col-lg-7.aboutme_info_col {
   overflow: visible;
 }
 
-
-
-
 #kirillov_photo {
   left: -16vw;
   width: 30vw;
@@ -1635,8 +1618,6 @@ div.col-lg-7.aboutme_info_col {
 .parag {
   font-size: 1.85vw;
 }
-
-/* Service */
 
 .bg_right {
   border-radius: 1.953125vw;
@@ -1682,8 +1663,6 @@ div.col-lg-4.col-md-6.col-sm-6.serv_block {
 .hover_zone:hover > .col-xs-7 > .card_txt > span {
   background-size: 100% 0.78125vw;
 }
-
-/* Service modals */
 
 .modal.fade .modal-dialog {
   top: -23.4375vw;
@@ -1761,8 +1740,6 @@ div.col-lg-4.col-md-6.col-sm-6.serv_block {
   border-radius: 0 0 .390625vw .390625vw;
 }
 
-/* Slider II */
-
 .cover_lg_screen {
   margin-top: 6vw;
   margin-bottom: 5vw;
@@ -1774,8 +1751,6 @@ div.col-lg-4.col-md-6.col-sm-6.serv_block {
   border-radius: .390625vw;
   background-color: transparent;
 }
-
-/* Pricing table */
 
 h2.h2_style.marg_h2.text-center {
   margin-top: 1.5625vw;
@@ -1837,8 +1812,6 @@ tbody tr.lab td {
 tbody {
   border-bottom-width: 0.078125vw;
 }
-
-/* Pricing drops */
 
 div[id="courses_scroll"] {
   padding-top: 4.375vw;
@@ -1976,8 +1949,6 @@ button.btn.btn-default.offer_downl#comf_btn:hover {
   background-color: #fff;
 }
 
-/* Form */
-
 .cover_for_scroll_strt {
   border-width: .0390625vw;
 }
@@ -2068,16 +2039,13 @@ textarea {
   font-size: 1.35390625vw;
 }
 
-.tooltips::before {       /* Tooltip arrow */ 
+.tooltips::before {  
   margin-top: -1.09375vw;
   margin-left: -0.625vw;
   border-width: 0.625vw;
 }
 
-/* Comfirmation footer */
-
 footer.container-fluid.text-left {
-  /*height: 6.25vw;*/
   padding-left: 1.171875vw;
   padding-right: 1.171875vw;
   height: calc(80 * 0.078125vw);
@@ -2111,7 +2079,7 @@ footer.container-fluid.text-left {
   padding: 0.46875vw 0.9375vw;
   width: 8.89648438vw;
 }
-}
+} */
 
 
 /* 1vw - 0.078125 (1px of 1280px width) */
@@ -2151,7 +2119,6 @@ footer.container-fluid.text-left {
           height: 800px;
           margin: 0 auto;
           padding-top: 4em;
-          /* background: url(Images/lines.png); */
           background-color: white;
           border-radius: 15px;
         }
@@ -2344,18 +2311,6 @@ footer.container-fluid.text-left {
 }
 
 @media (max-width: 767px) and (max-height: 430px) {
-
-        /*.navbar {
-           display: none;
-        }
-
-        .slider_pix {
-          margin-top: 0;
-        }
-
-        .about_me_cover {
-          margin-top: 1em;
-        }*/
 
         #tog_btn, #myNavbar {
            display: none;

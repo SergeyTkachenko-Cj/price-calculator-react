@@ -1,5 +1,4 @@
 import React from "react"
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Base from './Base';
 import AttRtn from './AttRtn';
 import Dopi from './Dopi';
