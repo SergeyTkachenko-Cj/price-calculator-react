@@ -5,11 +5,11 @@ $name = $_POST['user_name'];
 $email = $_POST['user_email'];
 $message = $_POST['comments'];
 
-$formcontent=" От: $name \n\n Сообщение: $message";
-$recipient = "vkirillov.online@yandex.ru";
-// $recipient = "tka4inni@gmail.com";
+$formcontent=" От: Bambi \n\n Сообщение: boom";
+// $recipient = "vkirillov.online@yandex.ru";
+$recipient = "tka4inni@gmail.com";
 $subject = "Контактная форма";
-$mailheader = "From: $email \r\n";
+$mailheader = "From: aaa@mail.ru \r\n";
 
 mail($recipient, $subject, $formcontent, $mailheader);
 

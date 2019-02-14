@@ -1,45 +1,70 @@
 import React, {Fragment, useState} from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import axios from "axios"; 
 
 const ModalWindow = props => {
-  const {comOffer, services, json} = props.st;
+  const [name, email] = props.formInpt;
+  const { 
+      clicked,
+      base, 
+      dopi, 
+      id, 
+      dopiClick,
+      basePrice,
+      fullPrice,
+      attestClick,
+      attestat,
+      rtn
+  } = props.st;
 
-  // const send = () => {
-  //     const arr = services.filter(i => i.clicked)[0];
-  //     const attest = arr.attestClick ? arr.attestat : 0;
-  //     const rtn = arr.rtn;
-  //     const base = arr.base.filter((item, index) => !(index % 2)).map(i => `<p class="base_dop_item">'${i}'</p><hr>`);
-  //     const JSONbase = JSON.stringify(base);
-  //     const basePrice = arr.basePrice;
-  //     const dopi = arr.dopi.map(i => i[0]).filter((item, index) => arr.dopiClick[index] && !(index % 2));
-  //     const JSONdopi = JSON.stringify(dopi);
+  let basicName = base.filter((item, index) => !(index % 2))
+                       .map(i => `<p class="base_dop_item">'${i}'</p><hr>`);
 
-  //     console.log(JSONdopi);
-  // }
+  let dopName = dopi.map(i => i[0])
+                     .filter((item, index) => dopiClick[index] && !(index % 2))
+                     .map(i => `<p class="base_dop_item">'${i}'</p><hr>`);
+
+  const dopPrice = dopiClick.reduce((cur, acc) => cur + acc) ? 
+                    dopi.map(i => i[1])
+                        .filter((item, index) => dopiClick[index] && !(index % 2))
+                        .reduce((cur, acc) => cur + acc) : [];
+
+  const attestPrice = attestClick ? attestat : 0;
+
+  const handleSubmit = event => {
+                        event.preventDefault();
+                        axios.post('http://test.argus-eko.ru/kp_mail.php', { 
+                                                                        name: name,
+                                                                        mail: email,
+                                                                        dopiPrice: dopPrice,
+                                                                        id: id,
+                                                                        atst: attestPrice,
+                                                                        full: fullPrice 
+                                                                      })
+                             .then(res => {
+                                console.log(res);
+                                console.log(res.data);
+                        })
+                      }
 
 return (
-        <Fragment>
-        {/* <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
-        </Button> */}
-
-        <Modal show={comOffer} onHide={props.funcII} animation={false} centered>
+        <Modal show={props.offer && clicked} onHide={props.funcII} animation={false} centered>
                       <Modal.Body>
                         <form action="test.php" id="submit_form_offer" method="post" name="formoffer" noValidate="" target="_blank">
                           <div>
-                            <input type='HIDDEN' name={json[0]}></input>
-                            <input type='HIDDEN' name={json[1]}></input>
-                            <input type='HIDDEN' name={json[2]}></input>
-                            <input type='HIDDEN' name={json[3]}></input>
-                            <input type='HIDDEN' name={json[4]}></input>
-                            <input type='HIDDEN' name={json[5]}></input>
-                            <input type='HIDDEN' name={json[6]}></input>
-                            <input type='HIDDEN' name={json[7]}></input>
-                            <input type='HIDDEN' name={json[8]}></input>
-                            <input className="cli_info cli_full_nme" maxLength="45" name="user_sirname" placeholder="ФИО" type="text" />
+                            {/* <input type='HIDDEN' defaultValue={id} name="lab_kb"></input>
+                            <input type='HIDDEN' defaultValue={basePrice} name="basic_price"></input>
+                            <input type='HIDDEN' defaultValue={basic_name} name="basic_name"></input>
+                            <input type='HIDDEN' defaultValue={dop_name} name="dop_name"></input>
+                            <input type='HIDDEN' defaultValue={dop_price} name="dop_price"></input>
+                            <input type='HIDDEN' defaultValue={fullPrice} name="price_all"></input>
+                            <input type='HIDDEN' defaultValue={attestClick ? attestat : 0} name="attest"></input>
+                            <input type='HIDDEN' defaultValue={rtn} name="rtn"></input> */}
+                            {/* <input name="lab_kb" value={json[0]} placeholder={json[0]}></input> */}
+                            <input onChange={e => props.funcVI(e)} defaultValue={name} className="cli_info cli_full_nme" maxLength="45" name="userName" placeholder="ФИО" type="text" />
                             <div className="inpt_mail_cvr">
-                              <input className="cli_info cli_email" name="user_mail" placeholder="Почт@" type="email" /> 
+                              <input onChange={e => props.funcVI(e)} defaultValue={email} className="cli_info cli_email" name="userMail" placeholder="Почт@" type="email" /> 
                               <span className="tooltips">example@mail.ru</span>
                             </div>
                           </div>
@@ -47,10 +72,10 @@ return (
                         <div className="warning">
                           <span>Заполните форму!</span>
                         </div>
-                        {json}
+                        {dopName}
                       </Modal.Body>
                       <Modal.Footer className="clr_I">
-                        <button onClick={props.funcIII} className="btn btn-default">
+                        <button onClick={handleSubmit} className="btn btn-default">
                             <span>Отправить КП</span>
                         </button> 
                         <button onClick={props.funcII} className="close_modal">
@@ -79,7 +104,6 @@ return (
                 </div>
               </div> */}
         </Modal>
-        </Fragment>
     )
 }
 
