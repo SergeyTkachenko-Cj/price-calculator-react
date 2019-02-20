@@ -1,0 +1,279 @@
+<html><head><meta charset='utf-8'></head><body>
+    <style>
+
+    @import url('https://fonts.googleapis.com/css?family=Arsenal:400,700');
+
+    .offer {
+      width: 60em;
+      font-family: 'Arsenal';
+    }
+
+    .offer_heading_img img, .offer_footer_img img {
+      width: 100%;
+    }
+
+    .offer_heading_img {
+      margin-bottom: 2em;
+    }
+
+    .offer_heading_txt {
+      margin-bottom: 3em;
+      font-size: 25px;
+      text-align: center; 
+    }
+
+    .offer_cntct_info { 
+      width: 300px;
+      font-size: 15px;
+    }
+
+    .offer_photo {
+      width: 190px; 
+      height: 55px; 
+      background-image: url(images/Argus_logo.png);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .offer_dear_sir {
+      margin-top: 90px; 
+      margin-bottom: 50px; 
+      clear: both;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .offer_tbl {
+      width: 100%; 
+      margin-bottom: 50px;
+      border-collapse: collapse;
+    }
+
+    .offer_hd_tr {
+      height: 33px; 
+      font-size: 20px; 
+      text-align: center; 
+      background-color: #d6e3bc;
+    }
+
+    .offer_tr {
+      height: 46px; 
+      font-size: 20px;
+    }
+
+    .offer_tr td {
+      padding: 1em 0;
+    }
+
+    .no_btm_brdr {
+      border: none;
+    }
+
+    .yes_btm_brdr {
+      font-size: 20px;
+    }
+
+    .offer_tbl_numb {
+      width: 5%;
+      padding-left: 10px;
+    }
+
+    .offer_tbl_serv {
+      width: 75%;
+    }
+
+    .offer_tbl_price {
+      width: 20%;
+      text-align: center;
+    }
+
+    hr {
+      height: 1px;
+      color: lightgrey;
+      background: lightgrey;
+      font-size: 0;
+      border: 0;
+    }
+
+    .offer_sum {
+      border: 1px solid silver;
+      border-bottom-color: white;
+      border-left-color: white;
+      border-right-color: white;
+    }
+
+    #whole_sum {
+      color: tomato;
+    }
+
+    .serv_list_name_cvr {
+      margin-top: 100px;
+    }
+
+    .serv_list_name {
+      padding: 2px 0;
+      text-align: center;
+      background-color: #d6e3bc;
+    }
+
+    .base_dop_item {
+      margin: 0 0 -6px 0;
+    }
+
+    .serv_list {
+      margin: 30px 0;
+    }
+
+    .deadline_txt {
+      margin-top: 70px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .a4_page {
+      page-break-inside: avoid;
+    }
+
+    .offer_dox {
+      margin-top: 35px;
+      font-size: 15px;
+    }
+
+    .offer_dox .offer_dox_head {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .tick {
+      font-family: 'Arial Unicode MS, Lucida Grande';
+      line-height: 2;
+    }
+
+    .sub_list_cvr {
+      font-size: 13px;
+      padding-left: 25px;
+    }
+
+    .sub_list_cvr span {
+      font-style: italic;
+    }
+
+    .call_now {
+      margin-top: 40px;
+      margin-bottom: 30px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    </style>
+
+    <div class="offer">
+      <div class="offer_heading_img"><img alt="оформление заголовка" src="images/comoffer_header.png"></div><br>
+      <div class="offer_info_photo_cvr">
+        <div class="off_pho_cvr"><div class="offer_photo"></div></div>
+        <div class="offer_cntct_info">
+          <p>г. Москва,</p>
+          <p>пр-т Маршала Жукова д.2</p>
+          <p>тел.: +7(495) 585-09-82</p>
+          <p>argus@argus-eko.ru</p>
+        </div>
+      </div>
+      <div class="offer_dear_sir">
+        <p>Уважаемый <span id="client_fullname">['client']</span>!</p>
+        <p>Направляю Вам коммерческое предложение по регистрации<br>
+        электро­измери­тельной лаборатории напряжением <span id="kB">['lab_kb']</span>.</p>
+      </div>
+
+      <!-- SERVICES -->
+      
+      <table class="offer_tbl">
+        <tbody>
+          <tr class="offer_hd_tr">
+            <td class="offer_tbl_numb"><span></span></td>
+            <td class="offer_tbl_serv"><span>Услуги</span></td>
+            <td class="offer_tbl_price"><span>Стоимость, руб.</span></td>
+          </tr>
+          <tr class="offer_tr">
+            <td class="offer_tbl_numb"><span>1</span></td>
+            <td class="offer_tbl_serv"><span>Комплекс услуг по подготовке и сопровождению документов для регистрации электроизмерительной лаборатории</span></td>
+            <td class="offer_tbl_price"><span id="base_price">['basic_price']</span></td>
+          </tr>
+          <tr class="offer_tr no_btm_brdr">
+            <td class="offer_tbl_numb"><span>2</span></td>
+            <td class="offer_tbl_serv"><span>Дополнительные виды испытаний</span></td>
+            <td class="offer_tbl_price"><span id="dopi_srv_price">['dop_price']</span></td>
+          </tr>
+          <tr class="yes_btm_brdr">
+            <td><span></span></td>
+            <td><span id="dopi_srv_list"></span></td>
+            <td><span></span></td>
+          </tr>
+          <tr class="offer_tr">
+            <td class="offer_tbl_numb"><span>3</span></td>
+            <td class="offer_tbl_serv"><span>Аттестация сотрудников (3 чел)</span></td>
+            <td class="offer_tbl_price"><span id="attest_sotrud">['attest']</span></td>
+          </tr>
+          <tr class="offer_tr">
+            <td class="offer_tbl_numb"><span>4</span></td>
+            <td class="offer_tbl_serv"><span>Платеж в Ростехнадзор</span></td>
+            <td class="offer_tbl_price"><span>25200</span></td>
+          </tr>
+          <tr class="offer_tr offer_sum">
+            <td class="offer_tbl_numb"><span></span></td>
+            <td class="offer_tbl_serv"><span>Итого</span></td>
+            <td class="offer_tbl_price"><span id="whole_sum">['price_all']</span></td>
+          </tr>
+          <!-- <tr class="offer_tr offer_sum">
+            <td class="offer_tbl_numb"><span></span></td>
+            <td class="offer_tbl_serv"><span>Игого</span></td>
+            <td class="offer_tbl_price"><span id="whole_sum">666</span></td>
+          </tr> -->
+        </tbody>
+      </table>
+
+    <div class="a4_page">
+      <div class="serv_list_name">Базовые виды испытаний, включенные в стоимость:</div>
+      <div class="serv_list">['basic_name']</div>
+    </div>
+
+    <div class="a4_page">
+      <div class="serv_list_name_cvr">['dop_head']</div>
+      <div class="serv_list">['dop_name']</div>
+    </div>
+
+      <!-- DOCUMENTS -->
+
+      <div class="offer_dox a4_page">
+        <p class="serv_list_name offer_dox_head"><span>Список необходимых документов:</span></p>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Устав предприятия (копия).</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Решение о создании организации (копия).</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Протокол учредителей о назначении директора.</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Свидетельство о постановке на учет в налоговой инспекции (ИНН) (копия).</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Свидетельство о внесении в единый государственный реестр (копия).</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Коды статистики (копия).</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Банковские реквизиты предприятия.</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Фактический адрес и телефон предприятия.</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Свидетельства о регистрации электроизмерительной лаборатории (в случае продления) (копия).</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Копии действующих свидетельств о поверке приборов или паспорта на приборы (если есть).</span><br>
+        <span class="tick">&#10003;</span>&nbsp;&nbsp;<span>Документы, подтверждающие квалификацию работников электроизмерительной лаборатории:</span><br>
+        <div class="sub_list_cvr">
+          <span>- Копия журнала по электробезопасности с аттестаций сотрудников лаборатории (3&nbsp;человека);</span><br>
+          <span>- Копия удостоверений сотрудников лаборатории с отметкой о допуске к специальным работам (3&nbsp;страницы);</span><br>
+          <span>- Копия дипломов об образовании сотрудников электролаборатории.</span>
+        </div>
+
+        <div class="deadline_txt">
+        <span>Срок оформления документов и получения свидетельства о регистрации<br>
+        электроизмерительной лаборатории составляет 7 недель.</span>
+      </div>
+
+        <div class="call_now">
+          <p><span>Звоните прямо сейчас!</span></p>
+          <p><span>+7(495) 585-09-82</span></p>
+        </div>
+
+      <div class="offer_footer_img"><img alt="footer bottom" src="images/comoffer_footer.png"></div>
+    </div>
+
+  </div>
+  </body></html>

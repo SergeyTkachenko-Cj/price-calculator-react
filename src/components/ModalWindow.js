@@ -18,7 +18,7 @@ const ModalWindow = props => {
       rtn
   } = props.st;
 
-  let basicName = base.filter((item, index) => !(index % 2))
+  let baseName = base.filter((item, index) => !(index % 2))
                        .map(i => `<p class="base_dop_item">'${i}'</p><hr>`);
 
   let dopName = dopi.map(i => i[0])
@@ -28,25 +28,47 @@ const ModalWindow = props => {
   const dopPrice = dopiClick.reduce((cur, acc) => cur + acc) ? 
                     dopi.map(i => i[1])
                         .filter((item, index) => dopiClick[index] && !(index % 2))
-                        .reduce((cur, acc) => cur + acc) : [];
+                        .reduce((cur, acc) => cur + acc) : 0;
 
   const attestPrice = attestClick ? attestat : 0;
 
+  console.log(baseName);
+
+  // const handleSubmit = event => {
+  //                       event.preventDefault();
+  //                       axios.post('http://test.argus-eko.ru/kp_mail.php', { 
+  //                                                                       name: name,
+  //                                                                       mail: email,
+  //                                                                       dopiPrice: dopPrice,
+  //                                                                       id: id,
+  //                                                                       atst: attestPrice,
+  //                                                                       full: fullPrice 
+  //                                                                     })
+  //                            .then(res => {
+  //                               console.log(res);
+  //                               console.log(res.data);
+  //                       })
+  //                     }
+
   const handleSubmit = event => {
-                        event.preventDefault();
-                        axios.post('http://test.argus-eko.ru/kp_mail.php', { 
-                                                                        name: name,
-                                                                        mail: email,
-                                                                        dopiPrice: dopPrice,
-                                                                        id: id,
-                                                                        atst: attestPrice,
-                                                                        full: fullPrice 
-                                                                      })
-                             .then(res => {
-                                console.log(res);
-                                console.log(res.data);
-                        })
-                      }
+    event.preventDefault();
+    axios.post('http://test.argus-eko.ru/test.php', { 
+                                                    name: name,
+                                                    mail: email,
+                                                    lab: id,
+                                                    base: baseName,
+                                                    basePrice: basePrice,
+                                                    dopi: dopName,
+                                                    dopiPrice: dopPrice,
+                                                    atst: attestPrice,
+                                                    rtn: rtn,
+                                                    full: fullPrice 
+                                                  })
+         .then(res => {
+            console.log(res);
+            console.log(res.data);
+    })
+  }
 
 return (
         <Modal show={props.offer && clicked} onHide={props.funcII} animation={false} centered>

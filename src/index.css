@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Arsenal:400,700');
+
 body {
   width: 100%; /* fixed bar */
   height: 100%;
@@ -5,7 +7,7 @@ body {
   padding: 0;  /* fixed bar */
   overflow-x: hidden;  /* fixed bar */ 
   overflow-y: scroll; /* fixed bar */
-  /* background-image: url(Images/subtle_dots.png); fixed bar */
+  /* background-image: url(images/subtle_dots.png); */
 }
 
 body.modal-open {      /* Cure for Bootstrap body padding on modal open glitch */
@@ -44,6 +46,10 @@ padding-right:inherit !important;
 .boom {
   display: block;
   opacity: 1;
+}
+
+.btn.btn-default span {
+  font-family: 'Arsenal','Times New Roman', sans-serif;
 }
 
 /* ----------- */
@@ -1007,7 +1013,8 @@ div[id="courses_scroll"] {
 }
 
 .drop_head span {
-  font-family: 'Open Sans', 'Trebuchet MS', serif;
+  /* font-family: 'Open Sans', 'Trebuchet MS', serif; */
+  font-family: 'Arsenal', 'Times New Roman', sans-serif;
   font-size: 24px;
   text-align: center;
   line-height: 40px;
@@ -1021,6 +1028,7 @@ div[id="courses_scroll"] {
 .drop_tbl {
   margin-top: 3em;
   margin-bottom: 3em;
+  height: auto;
 }
 
 .attest_rtn {
