@@ -2,15 +2,13 @@ import React, {Component, Fragment} from "react";
 import List from './List.js';
 import Dropdown from './Dropdown';
 import ButtonSelect from './ButtonSelect';
-import ModalWindow from './ModalWindow';
+import ModalWindow from './ModalWindow/ModalWindow';
 
 class DropDownBlock extends Component {
     state = {
         services: List,
         comOffer: false,
-        json: ['','','','','','',''],
-        userName: '',
-        userMail: ''
+        index: 0
     }
 
     handleClick = (id, step) => {
@@ -41,62 +39,29 @@ class DropDownBlock extends Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleKp = () => {
-        const newList = this.state.comOffer;
-        this.setState({comOffer: !newList});
+    handleKp = ind => {
+        ind === undefined ? this.setState({comOffer: !this.state.comOffer}) : 
+        this.setState({
+            comOffer: !this.state.comOffer, 
+            index: ind
+        });
     }
 
-    // handleJSON = () => {
-    //     const arr = [...this.state.services].filter(i => i.clicked)[0];
-    //     const lab_kb = arr.id;
-    //     const attest = arr.attestClick ? arr.attestat : 0;
-    //     const rtn = arr.rtn;
-    //     let basic_name = arr.base.filter((item, index) => !(index % 2)).map(i => `<p class="base_dop_item">'${i}'</p><hr>`);
-    //     const basic_price = arr.basePrice;
-    //     let dop_name = arr.dopi.map(i => i[0])
-    //                          .filter((item, index) => arr.dopiClick[index] && !(index % 2))
-    //                          .map(i => `<p class="base_dop_item">'${i}'</p><hr>`);
-    //     const dop_price = arr.dopiClick.reduce((cur, acc) => cur + acc) ? 
-    //                       arr.dopi.map(i => i[1])
-    //                               .filter((item, index) => arr.dopiClick[index] && !(index % 2))
-    //                               .reduce((cur, acc) => cur + acc) : [];
-    //     const price_all = arr.fullPrice;
-    //     basic_name = JSON.stringify(basic_name);
-    //     dop_name = JSON.stringify(dop_name);
-
-    //     this.setState({json: [lab_kb, 
-    //                           basic_price, 
-    //                           basic_name, 
-    //                           dop_name, 
-    //                           dop_price, 
-    //                           price_all, 
-    //                           attest, 
-    //                           rtn]
-    //     });
-    // }
+    handleSuccess = param => {
+        this.setState({success: param});
+    }
 
     render() {
         const f = Param => {
             return this.state.services.map((item, index) => 
                 <Param 
-                    key={index} 
+                    key={index}
+                    index={index} 
                     func={this.handleClick}
                     funcII={this.handleKp}
                     list={item} 
                 />
         )}
-
-        const bambi = this.state.services.map((item, index) => 
-            <ModalWindow 
-                key={index} 
-                st={item} 
-                offer={this.state.comOffer}
-                funcII={this.handleKp} 
-                // funcIII={this.handleJSON} 
-                funcVI={this.handleText}
-                formInpt={[this.state.userName, this.state.userMail]}
-            />
-        )
 
         return (
             <Fragment>
@@ -104,7 +69,12 @@ class DropDownBlock extends Component {
                     {f(ButtonSelect)}
                 </div>
                 {f(Dropdown)}
-                {bambi}
+                <ModalWindow 
+                    prps={this.state.services} 
+                    offer={this.state.comOffer}
+                    indx={this.state.index}
+                    kp={this.handleKp} 
+                />
             </Fragment>
         )
     }

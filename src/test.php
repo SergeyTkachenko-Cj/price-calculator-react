@@ -13,7 +13,7 @@ mysqli_query($db,'SET character_set_client = utf8;');
 mysqli_query($db,'SET CHARACTER_SET_RESULTS=utf8;');
 mysqli_query($db,'SET sql_mode = "";');
 mysqli_query($db,'SET group_concat_max_len = 4294967295;');
-// mysqli_query($db,'insert into rl_debug (cvalue,cerror,ddate,naff,ncount,cinfo,nrow) values (\''.mysqli_escape_string($db,'POST='.print_r($_POST,1)).'\',null,now(),null,null,\''.mysqli_escape_string($db,'kirillov.online').'\',null);');
+
 if (!$db) $dber=mysqli_connect_error();
 $a=mysqli_fetch_row(mysqli_query($db,'SELECT cfile, ccontent, coalesce(ccontent_mime,\'application/force-download\'),ccontent_size,ccontent_ext FROM rl_templates where id=2073 and nid is null'));//2075 - docx, 2073 - pdf
 if ($a[2]!='text/html')
@@ -30,7 +30,7 @@ if (($a[2]=='text/html')or($zip->open($file) === TRUE))
  $content=1;
 
 
-  // -------------- NEW DATA --------------------------------
+// -------------- NEW DATA --------------------------------
 
  $data = json_decode(file_get_contents("php://input"), true);
  $data['base']=implode($a[2]=='text/html'?'<br>':'</w:t><w:br/><w:t>', ($data['base']));
@@ -104,9 +104,6 @@ $rp=array(
    header('Pragma: public'); // required
    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
    header("Cache-Control: no-store, no-cache, must-revalidate");
-   //header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-   //header('Cache-Control: private',false); // required for certain browsers
-   //header('Content-Type: '.$a[2].'; charset=utf-8');
    header('Content-Description: File Transfer');
    header('Content-Type: '.$a[2].'; charset=utf-8');
    header('Content-Disposition: attachment; filename="'.$a[0].'";' );
@@ -127,104 +124,17 @@ $rp=array(
   else $mpdf->Output($a[0],'D');
   }
  }
-// print_r($_POST);
-// print_r($m);
-
-// POST=Array
-// (
-//     [user_sirname] => addad d . ad dad
-//     [user_mail] => tka4inni@gmail.com
-//     [lab_kb] => 1 кВ
-//     [basic_price] => 85000
-//     [basic_name] => ["Проверка соответствия смонтированной электро­установки требованиям нормативно‐технической документации (визуальный осмотр)","Проверка цепи между заземлителями и заземляемыми элементами; проверка наличия цепи между заземлёнными установками и элементами заземлённой установки","Измерения сопротивления изоляции электрических аппаратов‚ вторичных цепей и электро­проводки напряжением до 1 кВ","Измерение сопротивления заземляющих устройств","Измерение удельного сопротивления грунта","Проверка цепи фаза‐нуль в электро­установках до 1 кВ с системой TN","Проверка срабатывания защиты при системе питания с заземлённой и изолированной нейтралью","Проверка действия расцепителей автомати­ческих выключателей","Испытание (проверка) устройств защитного отключения (УЗО)","Испытание устройств АВР","Проверка фазировки РУ напряжением до 1 кВ и их присоединений","Испытание силовых кабельных линий напряжением до 1 кВ"]
-//     [dop_name] => ["Измерение сопротивления (проводимости) полов и стен (5000 p)","Проверка работы автоматических выключателей и контакторов при пониженном и номинальном напряжениях оперативного тока (1000 p)"]
-//     [dop_price] => 6000
-//     [price_all] => 115780
-//     [attest] => 0
-//     [rtn] => 24780
-//     [client] => addad d . ad dad
-//     [email] => tka4inni@gmail.com
-// )
-
-
-
-//$formcontent="$i \n\n $j \n\n $a \n\n $b \n\n $c \n\n $d \n\n $e \n\n $f \n\n $g \n\n $h";
-//$recipient = $_POST['email'];//"tka4inni@gmail.com";
-// $subject = 'Коммерческое предложение';
-// $mailheader = "From: 'Владимир Кириллов' \r\n";
-//vkirillov.online@yandex.ru   CZg9Mt
-
-// mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
-
-// $content =" От: $name \n\n Лаборатория: $a \n\n Доп.услуги: $d \n\n Аттестация: $g \n\n Общая сумма: $f";
-// $towhom = "tka4inni@gmail.com";
-// $heading = "$name скачал коммерческое предложение";
-// $mailhead = "From: $email \r\n";
-
-// mail($towhom, $heading, $content, $mailhead) or die("Error!");
 
 if ($content)
 {   
-  // $mailto = $_POST['email'];
     $subject = 'Коммерческое предложение';
     $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электорлаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество. Наш email: argus@argus.group и телефон: 8-499-755-93-10. Обращайтесь по любым вопросам.";
     $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'</body></html>';
- //    // $content = $content;// file_get_contents($file);
- //    $subject='=?UTF-8?B?'.base64_encode($subject).'?=';
- //    $message=chunk_split(base64_encode($message));
- //    $content = chunk_split(base64_encode($content));
- //    $a[0]='=?UTF-8?B?'.base64_encode($a[0]).'?=';
-
- //    // a random hash will be necessary to send mixed content
- //    $separator = md5(time());
-
- //    // carriage return type (RFC)
- //    $eol = "\r\n";
-
- //    // main header (multipart mandatory)
- //    $headers = 'From: Владимир Кириллов <noreply@kirillov.online>' . $eol;
- //    $headers .= 'MIME-Version: 1.0' . $eol;
- //    $headers .= 'Content-Type: multipart/mixed; boundary="' . $separator . '"' . $eol;
- //    // $headers .= 'Content-Transfer-Encoding: 7bit' . $eol;
- //    // $headers .= 'This is a MIME encoded message.' . $eol;
-
- //    // message
- //    $body = '--' . $separator . $eol;
- //    $body .= 'Content-Type: text/plain; charset="UTF-8"' . $eol;
- //    $body .= 'Content-Transfer-Encoding: base64' . $eol;
- //    $body .= $message . $eol;
-
- //    // message
- //    $body = '--' . $separator . $eol;
- //    $body .= 'Content-Type: text/html; charset="UTF-8"' . $eol;
- //    $body .= 'Content-Transfer-Encoding: base64' . $eol;
- //    $body .= $message . $eol;
-
- //    // attachment
- //    $body .= '--' . $separator . $eol;
- //    $body .= 'Content-Type: '.$a[2].'; name="' . $a[0] . '"' . $eol;
- //    $body .= 'Content-Disposition: attachment; filename="' . $a[0] . '"' . $eol;
- //    $body .= 'Content-Transfer-Encoding: base64' . $eol;
- //    $body .= $content . $eol;
- //    $body .= '--' . $separator . '--';
-
- //    //SEND Mail
- //    if (mail($mailto, $subject, $body, $headers)) echo '<script>window.close();</script>';
-  // else
-  // {echo 'Письмо не послано...';
- //     print_r( error_get_last() );
- //     }
-
 
 //Load Composer's autoloader
 require 'mailer/vendor/autoload.php';
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
-    //Server settings
-    //$mail->SMTPDebug = 1;                                 // Enable verbose debug output
-    // global $dbg;
-    // $dbg = '';
-    // $mail->Debugoutput = function($str, $l) {global $dbg; $dbg .= $l.': '.$str.'\n';};
     $mail->CharSet = 'UTF-8';
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'smtp.yandex.com';  // Specify main and backup SMTP servers
@@ -239,7 +149,6 @@ try {
     $mail->FromName='Группа компаний АРГУС';
     $mail->addAddress($data['mail'], $data['name']);     // Add a recipient
 
-
     //Attachments
     $mail->addStringAttachment($content,$a[0],'base64',$a[2].';  charset=utf-8');         // Add attachments
     //Content
@@ -251,13 +160,10 @@ try {
     $mail->AltBody = $message;
     $mail->send();
     $return = true;
-    // echo '<script>window.close();</script>';
     echo json_encode($return);
 } catch (Exception $e) {
     $return = false;
     echo json_encode($return);
-    // echo 'Письмо не послано... Ошибки: ', $mail->ErrorInfo;
-    // else $errors[]='Невозможно отправить счёт №'.$id.' по причинам SMTP: '.$dbg;
 }
- }
+}
 ?>

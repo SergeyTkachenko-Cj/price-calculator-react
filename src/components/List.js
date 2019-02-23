@@ -28,7 +28,7 @@ const List = [
         dopi: dop10,
         dopiClick: dop10.map(i => false),
         basePrice: 95000,
-        fullPrice: 120200
+        fullPrice: 125000
     },
     {
         id: '110/220/330/550/750 кВ',
@@ -40,7 +40,7 @@ const List = [
         dopi: dop110,
         dopiClick: dop110.map(i => false),
         basePrice: 150000,
-        fullPrice: 175200
+        fullPrice: 210000
     }
 ]
 

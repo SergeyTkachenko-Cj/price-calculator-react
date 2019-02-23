@@ -52,6 +52,55 @@ padding-right:inherit !important;
   font-family: 'Arsenal','Times New Roman', sans-serif;
 }
 
+.show-on {
+  display: block;
+}
+
+.show-off {
+  display: none;
+}
+
+.notif {
+  font-family: 'Arsenal','Times New Roman', sans-serif;
+  font-size: 22px;
+}
+
+.form-offer {
+  margin-bottom: 0;
+}
+
+.opague {
+  opacity: 0;
+}
+
+.loader {
+  position: absolute;
+  left: 0; top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.state-one {
+  display: none;
+  animation: none;
+}
+
+.state-two {
+  animation: pulse .5s infinite alternate-reverse;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* ----------- */
 
 

@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 
 const Itogo = props => {
-    const {fullPrice, id} = props.prps.list;
+    const {fullPrice} = props.prps.list;
     const {funcII} = props.prps;
 
     return(
@@ -12,10 +12,10 @@ const Itogo = props => {
             <div className="h_sum">
                 <span className="dop_sum">{fullPrice} p</span>
             </div>
-            <button onClick={() => funcII()} className="btn btn-default action_btn js-count_btn long_name">
+            <button onClick={() => funcII(props.prps.index)} className="btn btn-default action_btn js-count_btn long_name">
                 <span>Коммерческое предложение</span>
             </button> 
-            <button onClick={() => funcII()} className="btn btn-default action_btn js-count_btn short_name">
+            <button onClick={() => funcII(props.prps.index)} className="btn btn-default action_btn js-count_btn short_name">
                 <span>Ком-ое предложение</span>
             </button>
         </Fragment>
