@@ -45,6 +45,7 @@ foreach ($data as $i => $v) $data[$i]=str_replace('&hyphen;','-', $data[$i]);
  $basePrice = $data['basePrice'];
  $dopi = $data['dopi'];
  $dopPrice = $data['dopiPrice'];
+ $dopHead = $data['dopiHead'];
  $atst = $data['atst'];
  $rtn = $data['rtn'];
  $full = $data['full'];
@@ -55,7 +56,7 @@ foreach ($data as $i => $v) $data[$i]=str_replace('&hyphen;','-', $data[$i]);
 
 $rp=array(
   '[client]'=>$name,
-  '[dop_head]' => '',
+  '[dop_head]' => $dopHead,
   '[lab_kb]'=>$lab,
   '[basic_price]'=>$basePrice,
   '[basic_name]'=>$base,
@@ -66,7 +67,7 @@ $rp=array(
   '[rtn]'=>$rtn,
   '[email]'=>$eMail,
   '[\'client\']'=>$name,
-  '[\'dop_head\']' =>'',
+  '[\'dop_head\']' => $dopHead,
   '[\'lab_kb\']'=>$lab,
   '[\'basic_price\']'=>$basePrice,
   '[\'basic_name\']'=>$base,
@@ -77,7 +78,7 @@ $rp=array(
   '[\'rtn\']'=>$rtn,
   '[\'email\']'=>$eMail,
   '[&apos;client&apos;]'=>$name,
-  '[&apos;dop_head&apos;]' =>'',
+  '[&apos;dop_head&apos;]' => $dopHead,
   '[&apos;lab_kb&apos;]'=>$lab,
   '[&apos;basic_price&apos;]'=>$basePrice,
   '[&apos;basic_name&apos;]'=>$base,

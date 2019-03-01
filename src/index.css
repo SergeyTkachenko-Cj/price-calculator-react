@@ -1125,6 +1125,10 @@ button.btn.btn-default:focus {
   background-color: white;
 }
 
+button.btn.btn-default.show-on:focus {
+  outline: 1px solid grey;
+}
+
 button.btn.btn-default.add_remove {
   width: 5.8em;
   border: 1px solid lightgrey;

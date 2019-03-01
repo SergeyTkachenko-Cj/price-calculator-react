@@ -8,7 +8,9 @@ class ModalWindow extends Component {
 
   state = {
     name: '',
+    nameValid: true,
     email: '',
+    emailValid: true,
     success: 0,
     loading: false
   }
@@ -34,10 +36,18 @@ class ModalWindow extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
+  handleValidation = () => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.setState({nameValid: this.state.name, emailValid: re.test(this.state.email)});
+    return this.state.name && re.test(this.state.email)
+  }
+
+  handleAnim = inpt => {
+    this.setState({[inpt]: true});
+  }
+
   handleSubmit = event => {
     event.preventDefault();
-
-    this.setState({loading: !this.state.loading});
 
     const {name, email} = this.state;
     const {base, dopi, id, dopiClick, basePrice, fullPrice, attestClick, attestat, rtn} 
@@ -55,15 +65,19 @@ class ModalWindow extends Component {
                           .filter((item, index) => dopiClick[index] && !(index % 2))
                           .reduce((cur, acc) => cur + acc) : 0;
 
+    const dopHead = dopName.length ? '<div class="serv_list_name">Дополнительные виды испытаний:</div>' : '';
+
     const attestPrice = attestClick ? attestat : 0;
-    const obj = {name: name, mail: email, lab: id, base: baseName, basePrice: basePrice, dopi: dopName, dopiPrice: dopPrice, atst: attestPrice, rtn: rtn, full: fullPrice };
+    const obj = {name: name, mail: email, lab: id, base: baseName, basePrice: basePrice, dopi: dopName, dopiPrice: dopPrice, dopiHead: dopHead, atst: attestPrice, rtn: rtn, full: fullPrice };
 
-    // setTimeout(() => {
-    //   this.handleSuccess(1);
-    //   this.setState({loading: false}); 
-    // }, 6000);
-
-    this.handleAxios('http://test.argus-eko.ru/test.php', obj)
+    if (this.handleValidation()) {
+      this.setState({loading: !this.state.loading});
+      // setTimeout(() => {
+      //   this.handleSuccess(1);
+      //   this.setState({loading: false}); 
+      // }, 4000); 
+      
+      this.handleAxios('http://test.argus-eko.ru/test.php', obj)
         .then(res => {
               if (res.data) {
                 this.handleSuccess(1);
@@ -75,6 +89,7 @@ class ModalWindow extends Component {
                 this.setState({loading: false}); 
               };
             });
+    }
   }
 
   render() {
@@ -85,7 +100,7 @@ class ModalWindow extends Component {
              onHide={this.state.loading ? () => null : this.handleClose} 
              animation={false} 
              centered>
-                <ModalBody state={this.state} txt={this.handleText} />
+                <ModalBody state={this.state} txt={this.handleText} anim={this.handleAnim} />
                 <ModalFooter 
                   state={this.state}
                   submit={this.handleSubmit} 
