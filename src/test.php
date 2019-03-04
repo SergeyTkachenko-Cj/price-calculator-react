@@ -15,7 +15,7 @@ mysqli_query($db,'SET sql_mode = "";');
 mysqli_query($db,'SET group_concat_max_len = 4294967295;');
 
 if (!$db) $dber=mysqli_connect_error();
-$a=mysqli_fetch_row(mysqli_query($db,'SELECT cfile, ccontent, coalesce(ccontent_mime,\'application/force-download\'),ccontent_size,ccontent_ext FROM rl_templates where id=2073 and nid is null'));//2075 - docx, 2073 - pdf
+$a=mysqli_fetch_row(mysqli_query($db,'SELECT cfile, ccontent, coalesce(ccontent_mime,\'application/force-download\'),ccontent_size,ccontent_ext FROM rl_templates where id=2073 and nid is null')); //2075 - docx, 2073 - pdf
 if ($a[2]!='text/html')
 {$file = tempnam('tmp/', 'zip');
  $f=fopen($file,'w');
@@ -91,7 +91,7 @@ $rp=array(
   );
 
  $c=str_replace(array_keys($rp),$rp,$c);
- $a[0] = str_replace(array_merge(array_map('chr', range(0,31)),array('<', '>', ':', '"', '&quot;', '/', '\\', '|', '?', '*')), '', htmlspecialchars_decode(str_replace(array_keys($rp),$rp,($_GET['fn']?$_GET['fn'].'.'.$a[4]:$a[0]))));
+ $a[0] = str_replace(array_merge(array_map('chr', range(0,31)),array('<', '>', ':', '"', '&quot;', '/', "'", '\\', '|', '?', '*')), '', htmlspecialchars_decode(str_replace(array_keys($rp),$rp,($_GET['fn']?$_GET['fn'].'.'.$a[4]:$a[0]))));
 
  if ($a[2]=='application/vnd.openxmlformats-officedocument.wordprocessingml.document') {$zip->addFromString('word/document.xml',$c);}
  else if ($a[2]=='application/vnd.oasis.opendocument.text') {$zip->addFromString('content.xml',$c);}
@@ -130,7 +130,7 @@ if ($content)
 {   
     $subject = 'Коммерческое предложение';
     $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электорлаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество. Наш email: argus@argus.group и телефон: 8-499-755-93-10. Обращайтесь по любым вопросам.";
-    $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'</body></html>';
+    $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'<br/></body></html>';
 
 //Load Composer's autoloader
 require 'mailer/vendor/autoload.php';

@@ -5,7 +5,7 @@ const ModalFooter = props => {
     const {success, loading} = props.state;
 
     return (
-        <Modal.Footer className="clr_I">
+        <Modal.Footer className="modal-footer">
             <button onClick={props.submit} 
                     className={success || loading ? 'show-off' : 'btn btn-default show-on'}>
                 <span>Отправить КП</span>

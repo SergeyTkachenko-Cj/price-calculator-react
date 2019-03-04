@@ -6,12 +6,12 @@ const AttRtn = props => {
     return(
         <table className="table attest_rtn">
         <tbody>
-            <tr className={attestClick ? "dop att dop-bg-color" : "dop att"}>
-                <td className="txt_resp dop_txt table_lg_screen">
+            <tr className={attestClick ? "dop-bg-color" : ""}>
+                <td className="dop_txt table_lg_screen">
                     Аттестация сотруднков (3&nbsp;чел) 
                     <span className="extra_txt"> ({attestat}&nbsp;р.)</span>
                 </td>
-                <td className="txt_resp dop_txt table_sm_screen">
+                <td className="dop_txt table_sm_screen">
                     Ат&shy;тес&shy;та&shy;ция со&shy;труд&shy;ни&shy;ков (3&nbsp;чел) 
                     <span className="extra_txt"> ({attestat}&nbsp;р.)</span>
                 <br/>
@@ -30,8 +30,8 @@ const AttRtn = props => {
                     </button>
                 </td>
             </tr>
-            <tr className="dop rtn">
-                <td className="txt_resp dop_txt" colSpan="3">
+            <tr className="rtn">
+                <td className="dop_txt" colSpan="3">
                     <span className="table_lg_screen">
                         Платёж в РТН (по&nbsp;отдельному&nbsp;договору) 
                         <span className="extra_txt"> ({rtn}&nbsp;р.)</span>

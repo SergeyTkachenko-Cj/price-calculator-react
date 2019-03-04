@@ -54,11 +54,11 @@ class ModalWindow extends Component {
           = this.props.prps[this.props.indx];
 
     let baseName = base.filter((item, index) => !(index % 2))
-                        .map(i => `<p class="base_dop_item">'${i}'</p><hr>`);
+                        .map(i => `<p class="base_dop_item">${i}</p><hr>`);
 
     let dopName = dopi.map(i => i[0])
                       .filter((item, index) => dopiClick[index] && !(index % 2))
-                      .map(i => `<p class="base_dop_item">'${i}'</p><hr>`);
+                      .map(i => `<p class="base_dop_item">${i}</p><hr>`);
 
     const dopPrice = dopName.length ? 
                       dopi.map(i => i[1])

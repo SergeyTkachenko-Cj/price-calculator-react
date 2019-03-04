@@ -4,12 +4,15 @@ import './bootstrap.css';
 import './index.css';
 import Header from './components/Header';
 import DropDownBlock from './components/DropDownBlock';
+import Warn from './components/Warn';
 
 function App() {
   return (
     <div className="container cvr">
+      <div className="logo"></div>
       <Header />
       <DropDownBlock />
+      <Warn />
     </div>
   );
 }

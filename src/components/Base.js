@@ -11,7 +11,7 @@ const Base = props => {
 
     for (let x = 0; x < base.length; x += 2) {
         arrBase.push(
-            <tr className="base" key={x}>
+            <tr key={x}>
                 <td className="txt_resp dop_txt table_lg_screen">{codec(base[x])}
                 </td>
                 <td className="txt_resp dop_txt table_sm_screen">{codec(base[x + 1])}

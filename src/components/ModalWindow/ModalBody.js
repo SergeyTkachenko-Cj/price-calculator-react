@@ -25,7 +25,6 @@ const ModalBody = props => {
                            name="email" 
                            placeholder="Почт@" 
                            type="email" /> 
-                    <span className="tooltips">example@mail.ru</span>
                     </div>
                   </div>
                 </form>

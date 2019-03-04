@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import List from './List.js';
 import Dropdown from './Dropdown';
 import ButtonSelect from './ButtonSelect';
@@ -64,7 +64,7 @@ class DropDownBlock extends Component {
         )}
 
         return (
-            <Fragment>
+            <div className="dropDownCvr">
                 <div className="btns-cvr">
                     {f(ButtonSelect)}
                 </div>
@@ -75,7 +75,7 @@ class DropDownBlock extends Component {
                     indx={this.state.index}
                     kp={this.handleKp} 
                 />
-            </Fragment>
+            </div>
         )
     }
 }

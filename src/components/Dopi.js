@@ -12,11 +12,11 @@ const Dopi = props => {
     for (let x = 0; x < dopi.length; x += 2) {
         arrDopi.push(
             <tr className={dopiClick[x] ? "dop dop-bg-color" : "dop"} key={x}>
-                <td className="txt_resp dop_txt table_lg_screen">
+                <td className="dop_txt table_lg_screen">
                     {codec(dopi[x][0])}
                     <span className="extra_txt"> ({dopi[x][1]} p)</span>
                 </td>
-                <td className="txt_resp dop_txt table_sm_screen">
+                <td className="dop_txt table_sm_screen">
                     {codec(dopi[x + 1][0])}
                     <span className="extra_txt"> ({dopi[x + 1][1]} p)</span>
                 <br/>
