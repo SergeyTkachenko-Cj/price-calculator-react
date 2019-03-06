@@ -1,4 +1,5 @@
 import React, {Fragment} from "react";
+import Button from 'react-bootstrap/Button';
 
 const ButtonSelect = props => {
     const {clicked, id} = props.list;
@@ -16,18 +17,20 @@ const ButtonSelect = props => {
     
     return (
         <Fragment>
-            <button 
-                className={clicked ? "btn-clicked cours_btn lg" : "cours_btn lg"}  
-                onClick={clicked ? () => false : () => props.func(id)} 
-                id={id}
+                <Button 
+                    variant="outline-success"
+                    className={clicked ? "btn-clicked cours_btn lg" : "cours_btn lg"}
+                    onClick={clicked ? () => false : () => props.func(id)} 
+                    id={id}
                 >{id}
-            </button>
-            <button 
-                className={clicked ? "btn-clicked cours_btn sm" : "cours_btn sm"}  
-                onClick={clicked ? () => false : () => props.func(id)} 
-                id={id}
+                </Button>
+                <Button 
+                    variant="outline-success"
+                    className={clicked ? "btn-clicked cours_btn sm" : "cours_btn sm"}  
+                    onClick={clicked ? () => false : () => props.func(id)} 
+                    id={id}
                 >{shortId}
-            </button>
+                </Button>
         </Fragment>
     )
 }

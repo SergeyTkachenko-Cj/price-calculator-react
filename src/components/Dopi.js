@@ -24,7 +24,7 @@ const Dopi = props => {
                     <button
                         onClick={() => props.prps.func(id, x)}     
                         className="btn btn-default add_remove">
-                        <span>{dopiClick[x + 1] ? 'Убрать' : 'Добавить'}</span>
+                        <span>{dopiClick[x] ? 'Убрать' : 'Добавить'}</span>
                     </button>
                 </td>
                 <td className="text-center lg_screen_btn">

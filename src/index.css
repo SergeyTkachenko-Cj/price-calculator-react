@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Arsenal:400,700');
 
+body {
+  background-color: #ffffff;
+  background-image: url('./bg.svg');
+}
+
 .logo {
   width: 70px;
   height: 70px;
@@ -35,12 +40,47 @@
 
 /* LAB BUTTONS */
 
+.btn-outline-success:not(:disabled):not(.disabled).active:focus, 
+.btn-outline-success:not(:disabled):not(.disabled):active:focus, 
+.show>.btn-outline-success.dropdown-toggle:focus {
+  box-shadow: none;
+  border-color: #1d8a5b;
+  background-color: #1d8a5b;
+}
+
+.btn-outline-success.focus, 
+.btn-outline-success:focus {
+  box-shadow: none;
+  background-color: #1d8a5b;
+}
+
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #1d8a5b;
+  border-color: #fff;
+}
+
+.cours_btn {
+  position: relative;
+  width: 98%;
+  height: 80px;
+  margin: .5em;
+  font-family: 'Arsenal','Times New Roman', sans-serif;
+  background-color: #fff;
+  color: #2F4858;
+  outline: none;
+  overflow: hidden;
+}
+
 .btns-cvr {
   display: flex;
 }
 
 .btns-cvr .btn-clicked {
-  border: 1.5px solid tomato;
+  box-shadow: 0 0 0 0.2rem #1d8a5b;
+  color: #fff;
+  background-color: #1d8a5b;
+  border-color: #fff;
 }
 
 .btns-cvr button {
@@ -71,6 +111,8 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  font-size: 23px;
+  color: #1d8a5b;
 }
 
 .state-one {
@@ -91,14 +133,22 @@
   }
 }
 
+.modal-footer .btn.btn-default.show-on,
+.modal-footer .btn.btn-default.show-on:focus,
+.modal-footer .btn.btn-default.show-on:active {
+  border: 1px solid #1d8a5b;
+  border-radius: unset;
+  outline: none;
+}
+
 
 /* PRICING LIST */
 
 .card_cours {
   margin-top: 1em;
   padding: 3em .9em 1.7em;
-  border: .1px solid #FFDFCA;
-  background-image: url('subtle_dots.png');
+  border: .1px solid #1d8a5b;
+  background-color: #fff;
 }
 
 tbody {
@@ -113,30 +163,13 @@ tbody {
   font-family: 'Arsenal','Times New Roman', sans-serif;
 }
 
-.cours_btn {
-  position: relative;
-  width: 98%;
-  height: 80px;
-  margin: .5em;
-  font-family: 'Arsenal','Times New Roman', sans-serif;
-  background: -webkit-gradient(linear, left top, right top, from(#FFF7F3), color-stop(#FFF7F3), color-stop(#FFF7F3), color-stop(#FFF7F3), to(#FFFFFF));
-  background: -webkit-linear-gradient(left, #FFF7F3, #FFF7F3, #FFF7F3, #FFF7F3, #FFFFFF);
-  background: -o-linear-gradient(left, #FFF7F3, #FFF7F3, #FFF7F3, #FFF7F3, #FFFFFF);
-  background: linear-gradient(to right, #FFF7F3, #FFF7F3, #FFF7F3, #FFF7F3, #FFFFFF);
-  outline: none;
-  border: 1.5px solid #FFDFCA;
-  -webkit-box-shadow: inset .1em .1em .7em #FFDFCA;
-          box-shadow: inset .1em .1em .7em #FFDFCA;
-  overflow: hidden;
-}
-
 #brake_sm {
   display: none;
 }
 
 .drop_head {
-  border-left: 1.5px solid lightgrey;
-  border-right: 1.5px solid lightgrey;
+  border-left: 1px solid #1d8a5b;
+  border-right: 1px solid #1d8a5b;
 }
 
 .drop_head span {
@@ -164,7 +197,7 @@ tbody {
 
 .dop_sum {
   font-size: 2.2em;
-  color: tomato;
+  color: #1d8a5b;
 }
 
 .dop_txt {
@@ -176,7 +209,7 @@ tbody {
 }
 
 .extra_txt {
-  color: tomato;
+  color: #1d8a5b;
   white-space: nowrap;
 }
 
@@ -245,11 +278,11 @@ button.btn.btn-default.action_btn {
   margin-bottom: 1em;
   padding: 0;
   border: none;
-  border-radius: 15px;
+  border-radius: 5px;
   font-size: 13pt;
   font-family: 'Arsenal','Times New Roman', sans-serif;
   color: snow;
-  background-color: #2F4858;
+  background-color: #1d8a5b;
   -webkit-transition: color .4s, background-color .4s, box-shadow .4s;
   -o-transition: color .4s, background-color .4s, box-shadow .4s;;
   -webkit-transition: color .4s, background-color .4s, -webkit-box-shadow .4s;;
@@ -305,7 +338,7 @@ form {
 
 form div {
   padding: 0.7em;
-  border: 10px solid #FFDFCA;
+  border: 10px solid #1d8a5b;
   border-radius: 5px;
 }
 
@@ -319,13 +352,6 @@ input {
   border: none;
   border-bottom: 1px solid #ddd;
   background-color: #ffffff;
-}
-
-.inpt_mail_cvr {
-  position: relative; 
-  padding: 0; 
-  margin: 0; 
-  border: none;
 }
 
 input:-webkit-autofill,          /* Auto-suggestions styling */
@@ -346,7 +372,7 @@ transition: background-color 5000s ease-in-out 0s;
 .modal-footer {
   overflow: hidden;
   border-radius: 0 0 5px 5px;
-  background-color: #FFDFCA;
+  background-color: #fff;
   height: 70px;
 }
 
@@ -360,16 +386,17 @@ transition: background-color 5000s ease-in-out 0s;
   left: 1em;
   width: 44px;
   height: 65px;
-
   float: left;
-  outline: 1px solid transparent;
   border: none;
-  color: #2F4858;
-
+  color: #1d8a5b;
   background-color: transparent;
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+}
+
+.close_modal:focus {
+  outline: none;
 }
 
 .close_modal span {
@@ -379,7 +406,6 @@ transition: background-color 5000s ease-in-out 0s;
   height: 100%;
   display: block;
   font-size: 45px; 
-  outline: none;
 }
 
 .notif {

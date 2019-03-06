@@ -26,7 +26,9 @@ class ModalWindow extends Component {
   handleClose = () => {
     this.setState({
               success: 0,
-              loading: false
+              loading: false,
+              nameValid: true,
+              emailValid: true
             });
     this.props.kp();
   }
@@ -72,6 +74,7 @@ class ModalWindow extends Component {
 
     if (this.handleValidation()) {
       this.setState({loading: !this.state.loading});
+
       // setTimeout(() => {
       //   this.handleSuccess(1);
       //   this.setState({loading: false}); 
@@ -100,7 +103,11 @@ class ModalWindow extends Component {
              onHide={this.state.loading ? () => null : this.handleClose} 
              animation={false} 
              centered>
-                <ModalBody state={this.state} txt={this.handleText} anim={this.handleAnim} />
+                <ModalBody 
+                  state={this.state} 
+                  txt={this.handleText} 
+                  anim={this.handleAnim} 
+                />
                 <ModalFooter 
                   state={this.state}
                   submit={this.handleSubmit} 
