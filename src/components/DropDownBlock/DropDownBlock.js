@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import List from './List.js';
+import List from '../List.js';
 import Dropdown from './Dropdown';
 import ButtonSelect from './ButtonSelect';
-import ModalWindow from './ModalWindow/ModalWindow';
+import ModalWindow from '../ModalWindow/ModalWindow';
 
 class DropDownBlock extends Component {
     state = {

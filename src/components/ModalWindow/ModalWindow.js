@@ -75,7 +75,7 @@ class ModalWindow extends Component {
     if (this.handleValidation()) {
       this.setState({loading: !this.state.loading});
 
-      // setTimeout(() => {
+      // setTimeout(() => {                   // For testing in development
       //   this.handleSuccess(1);
       //   this.setState({loading: false}); 
       // }, 4000); 
@@ -102,6 +102,7 @@ class ModalWindow extends Component {
       <Modal show={this.props.offer && clicked} 
              onHide={this.state.loading ? () => null : this.handleClose} 
              animation={false} 
+             className={this.props.offer ? "modal-on" : ""}
              centered>
                 <ModalBody 
                   state={this.state} 
