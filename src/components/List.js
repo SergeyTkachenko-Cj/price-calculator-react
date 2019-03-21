@@ -9,38 +9,29 @@ const List = [
     {
         id: '1 кВ',
         clicked: false,
-        attestat: 15000,
-        attestClick: false,
-        rtn: 25200,
         base: base1,
         dopi: dop1,
         dopiClick: dop1.map(i => false),
-        basePrice: 85000,
-        fullPrice: 110200
+        basePrice: 60000,
+        fullPrice: 60000
     },
     {
         id: '10/20/35 кВ',
         clicked: false,
-        attestat: 20000,
-        attestClick: false,
-        rtn: 30000,
         base: base10,
         dopi: dop10,
         dopiClick: dop10.map(i => false),
-        basePrice: 95000,
-        fullPrice: 125000
+        basePrice: 65000,
+        fullPrice: 65000
     },
     {
         id: '110/220/330/550/750 кВ',
         clicked: false,
-        attestat: 45500,
-        attestClick: false,
-        rtn: 60000,
         base: base110,
         dopi: dop110,
         dopiClick: dop110.map(i => false),
-        basePrice: 150000,
-        fullPrice: 210000
+        basePrice: 120000,
+        fullPrice: 120000
     }
 ]
 

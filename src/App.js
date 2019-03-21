@@ -1,20 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './bootstrap.css';
 import './index.css';
-import Header from './components/Header';
-import DropDownBlock from './components/DropDownBlock/DropDownBlock';
-import Warn from './components/Warn';
+import MainBlock from './components/MainBlock';
 
-function App() {
-  return (
-    <div className="container cvr">
-      <div className="logo"></div>
-      <Header />
-      <DropDownBlock />
-      <Warn />
-    </div>
-  );
+const App = () => {
+    return (
+        <MainBlock />
+    )
 }
 
 export default App;

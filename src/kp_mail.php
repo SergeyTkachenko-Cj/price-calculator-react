@@ -9,11 +9,11 @@ $name = $data['name'];
 $mail = $data['mail'];
 $price = $data['dopiPrice'];
 $id = $data['lab'];
-$atst = $data['atst'];
 $full = $data['full'];
+$mngr = $data['manager'];
 
 $subject = 'Коммерческое предложение';
-$message = "От: $name\n<br />\n<br />Почта: $mail\n<br />\n<br />Лаборатория: $id\n<br />\n<br />Доп.услуги сумма: $price\n<br />\n<br />Аттестация: $atst\n<br />\n<br />Общая сумма: $full";
+$message = "От: $name\n<br />\n<br />Почта: $mail\n<br />\n<br />Лаборатория: $id\n<br />\n<br />Доп.услуги сумма: $price\n<br />\n<br />Общая сумма: $full";
 $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'</body></html>';
 
 //Load Composer's autoloader
@@ -32,7 +32,7 @@ try {
     //Recipients
     $mail->From='argus@argus.group';
     $mail->FromName='Скачали коммерческое предложение';
-    $mail->addAddress("tka4inni@gmail.com", "АРГУС");     // Add a recipient
+    $mail->addAddress($mngr, "АРГУС");     // Add a recipient
 
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML

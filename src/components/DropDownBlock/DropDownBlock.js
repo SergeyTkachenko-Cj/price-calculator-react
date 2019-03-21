@@ -19,15 +19,9 @@ class DropDownBlock extends Component {
             if (step === undefined) {
                 i.clicked = i.id === id ? !i.clicked : false;
             }
-            else {
-                if (step === 'a') {
-                    i.attestClick = i.id === id ? !i.attestClick : i.attestClick;
-                    i.fullPrice = i.id === id ? pricing(i.attestClick, i.attestat, i.fullPrice) : i.fullPrice;
-                } 
-                else {
-                    i.dopiClick[step] = i.id === id ? !i.dopiClick[step] : i.dopiClick[step];
-                    i.fullPrice = i.id === id ? pricing(i.dopiClick[step], i.dopi[step][1], i.fullPrice) : i.fullPrice;
-                }
+            else { 
+                i.dopiClick[step] = i.id === id ? !i.dopiClick[step] : i.dopiClick[step];
+                i.fullPrice = i.id === id ? pricing(i.dopiClick[step], i.dopi[step][1], i.fullPrice) : i.fullPrice;
             }
         })
 
@@ -52,7 +46,7 @@ class DropDownBlock extends Component {
     }
 
     render() {
-        const f = Param => {
+        const par = Param => {
             return this.state.services.map((item, index) => 
                 <Param 
                     key={index}
@@ -64,16 +58,20 @@ class DropDownBlock extends Component {
         )}
 
         return (
-            <div className="dropDownCvr">
+            <div className={this.props.prps.manager ? 
+                            'show-on dropDownCvr' : 
+                            'show-off'
+                            }>
                 <div className="btns-cvr">
-                    {f(ButtonSelect)}
+                    {par(ButtonSelect)}
                 </div>
-                {f(Dropdown)}
+                {par(Dropdown)}
                 <ModalWindow 
                     prps={this.state.services} 
                     offer={this.state.comOffer}
                     indx={this.state.index}
-                    kp={this.handleKp} 
+                    kp={this.handleKp}
+                    mngr={this.props.prps.managerEmail} 
                 />
             </div>
         )

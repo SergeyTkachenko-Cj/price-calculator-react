@@ -1,6 +1,5 @@
 import React from "react"
 import Base from './Base';
-import AttRtn from '../AttRtn/AttRtn';
 import Dopi from './Dopi';
 import Itogo from './Itogo';
 
@@ -12,7 +11,6 @@ const Dropdown = props => {
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1 text-center">
                         <div className={clicked ? "card_cours fade-in" : ""}>
-                            <AttRtn prps={props} />
                             <Base prps={props} />
                             <Dopi prps={props} />
                             <Itogo prps={props} />

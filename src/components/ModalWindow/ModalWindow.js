@@ -52,8 +52,7 @@ class ModalWindow extends Component {
     event.preventDefault();
 
     const {name, email} = this.state;
-    const {base, dopi, id, dopiClick, basePrice, fullPrice, attestClick, attestat, rtn} 
-          = this.props.prps[this.props.indx];
+    const {base, dopi, id, dopiClick, basePrice, fullPrice} = this.props.prps[this.props.indx];
 
     let baseName = base.filter((item, index) => !(index % 2))
                         .map(i => `<p class="base_dop_item">${i}</p><hr>`);
@@ -69,8 +68,7 @@ class ModalWindow extends Component {
 
     const dopHead = dopName.length ? '<div class="serv_list_name">Дополнительные виды испытаний:</div>' : '';
 
-    const attestPrice = attestClick ? attestat : 0;
-    const obj = {name: name, mail: email, lab: id, base: baseName, basePrice: basePrice, dopi: dopName, dopiPrice: dopPrice, dopiHead: dopHead, atst: attestPrice, rtn: rtn, full: fullPrice };
+    const obj = {name: name, mail: email, lab: id, base: baseName, basePrice: basePrice, dopi: dopName, dopiPrice: dopPrice, dopiHead: dopHead, full: fullPrice, manager: this.props.mngr};
 
     if (this.handleValidation()) {
       this.setState({loading: !this.state.loading});
@@ -80,12 +78,12 @@ class ModalWindow extends Component {
       //   this.setState({loading: false}); 
       // }, 4000); 
       
-      this.handleAxios('http://test.argus-eko.ru/test.php', obj)
+      this.handleAxios('https://calculator.argus.group/test.php', obj)
         .then(res => {
               if (res.data) {
                 this.handleSuccess(1);
                 this.setState({loading: false});
-                this.handleAxios('http://test.argus-eko.ru/kp_mail.php', obj)
+                this.handleAxios('https://calculator.argus.group/kp_mail.php', obj)
               }
               else { 
                 this.handleSuccess(-1);

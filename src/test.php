@@ -46,8 +46,6 @@ foreach ($data as $i => $v) $data[$i]=str_replace('&hyphen;','-', $data[$i]);
  $dopi = $data['dopi'];
  $dopPrice = $data['dopiPrice'];
  $dopHead = $data['dopiHead'];
- $atst = $data['atst'];
- $rtn = $data['rtn'];
  $full = $data['full'];
  
 // print_r($data);
@@ -62,9 +60,7 @@ $rp=array(
   '[basic_name]'=>$base,
   '[dop_price]'=>$dopPrice,
   '[dop_name]'=>$dopi,
-  '[attest]'=>$atst,
   '[price_all]'=>$full,
-  '[rtn]'=>$rtn,
   '[email]'=>$eMail,
   '[\'client\']'=>$name,
   '[\'dop_head\']' => $dopHead,
@@ -73,9 +69,7 @@ $rp=array(
   '[\'basic_name\']'=>$base,
   '[\'dop_price\']'=>$dopPrice,
   '[\'dop_name\']'=>$dopi,
-  '[\'attest\']'=>$atst,
   '[\'price_all\']'=>$full,
-  '[\'rtn\']'=>$rtn,
   '[\'email\']'=>$eMail,
   '[&apos;client&apos;]'=>$name,
   '[&apos;dop_head&apos;]' => $dopHead,
@@ -84,9 +78,7 @@ $rp=array(
   '[&apos;basic_name&apos;]'=>$base,
   '[&apos;dop_price&apos;]'=>$dopPrice,
   '[&apos;dop_name&apos;]'=>$dopi,
-  '[&apos;attest&apos;]'=>$atst,
   '[&apos;price_all&apos;]'=>$full,
-  '[&apos;rtn&apos;]'=>$rtn,
   '[&apos;email&apos;]'=>$eMail,
   );
 
@@ -129,7 +121,7 @@ $rp=array(
 if ($content)
 {   
     $subject = 'Коммерческое предложение';
-    $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электорлаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество. Наш email: argus@argus.group и телефон: 8-499-755-93-10. Обращайтесь по любым вопросам.";
+    $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электорлаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество. Наш email: argus@argus.group и телефон: +7(495)585-09-82. Обращайтесь по любым вопросам.";
     $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'<br/></body></html>';
 
 //Load Composer's autoloader
@@ -154,9 +146,7 @@ try {
     $mail->addStringAttachment($content,$a[0],'base64',$a[2].';  charset=utf-8');         // Add attachments
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    // $mail->Subject = $subject;
     $mail->Subject = "=?UTF-8?B?".base64_encode($subject)."?=";
-    // $mail->Subject = html_entity_decode($subject);
     $mail->Body    = $html;
     $mail->AltBody = $message;
     $mail->send();
