@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 
 const Dopi = props => {
-    const {dopi, id, dopiClick} = props.prps.list;
+    const {dopi, id, dopiClick, exception} = props.prps.list;
     const arrDopi = [];
 
     const codec = attr => attr

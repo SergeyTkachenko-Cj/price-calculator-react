@@ -21,6 +21,7 @@ class DropDownBlock extends Component {
             }
             else { 
                 i.dopiClick[step] = i.id === id ? !i.dopiClick[step] : i.dopiClick[step];
+                i.dopiClick[i.dopi[step][2]] = false;   // button exceptions
                 i.fullPrice = i.id === id ? pricing(i.dopiClick[step], i.dopi[step][1], i.fullPrice) : i.fullPrice;
             }
         })
