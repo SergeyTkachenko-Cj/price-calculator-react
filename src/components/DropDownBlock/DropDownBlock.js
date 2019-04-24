@@ -16,7 +16,7 @@ class DropDownBlock extends Component {
         const pricing = (clckd, price, fullPrice) => clckd ? fullPrice + price : fullPrice - price;
 
         newList.forEach(i => {
-            if (step === undefined) {
+            if (step === undefined || i.dopi[step] === undefined) {
                 i.clicked = i.id === id ? !i.clicked : false;
             }
             else { 
