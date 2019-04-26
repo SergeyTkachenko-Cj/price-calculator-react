@@ -16,12 +16,19 @@ class DropDownBlock extends Component {
         const pricing = (clckd, price, fullPrice) => clckd ? fullPrice + price : fullPrice - price;
 
         newList.forEach(i => {
+                const exceptions = (excepIndex) => {        // exception buttons
+                    if (excepIndex) {                       // (cannot be pushed simulteniously)
+                        i.fullPrice -= i.dopiClick[excepIndex] ? i.dopi[excepIndex][1] : 0; 
+                        i.dopiClick[excepIndex] = false;
+                    } 
+                }
+
             if (step === undefined || i.dopi[step] === undefined) {
                 i.clicked = i.id === id ? !i.clicked : false;
             }
             else { 
                 i.dopiClick[step] = i.id === id ? !i.dopiClick[step] : i.dopiClick[step];
-                i.dopiClick[i.dopi[step][2]] = false;   // button exceptions
+                exceptions(i.dopi[step][2]);  
                 i.fullPrice = i.id === id ? pricing(i.dopiClick[step], i.dopi[step][1], i.fullPrice) : i.fullPrice;
             }
         })
