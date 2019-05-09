@@ -9,16 +9,26 @@ const Dopi = props => {
                             .replace(/&nbsp;/g, "\u00A0")
                             .replace(/&hyphen;/g, "\u002D");
 
+    const specialItem = (special, click) => typeof special === 'string' && click;
+
     for (let x = 0; x < dopi.length; x += 2) {
         arrDopi.push(
             <tr className={dopiClick[x] ? "dop dop-bg-color" : "dop"} key={x}>
                 <td className="dop_txt table_lg_screen">
                     {codec(dopi[x][0])}
-                    <span className="extra_txt"> ({dopi[x][1]} p)</span>
+                    <span className={specialItem(dopi[x][2], dopiClick[x]) ? "show-off" : "extra_txt show-on-inline"}> ({dopi[x][1]} p)</span>
+                    <div className={specialItem(dopi[x][2], dopiClick[x]) ? "special show-on" : "show-off"}>
+                        {specialItem(dopi[x][2], dopiClick[x]) ? codec(dopi[x][2]) : null}
+                        <span className="extra_txt"> ({dopi[x][1]} p)</span>
+                    </div>
                 </td>
                 <td className="dop_txt table_sm_screen">
                     {codec(dopi[x + 1][0])}
-                    <span className="extra_txt"> ({dopi[x + 1][1]} p)</span>
+                    <span className={specialItem(dopi[x + 1][2], dopiClick[x]) ? "show-off" : "extra_txt show-on-inline"}> ({dopi[x + 1][1]} p)</span>
+                    <div className={specialItem(dopi[x + 1][2], dopiClick[x]) ? "special show-on" : "show-off"}>
+                        {specialItem(dopi[x + 1][2], dopiClick[x]) ? codec(dopi[x + 1][2]) : null}
+                        <span className="extra_txt"> ({dopi[x + 1][1]} p)</span>
+                    </div>
                 <br/>
                 <br/>
                     <button

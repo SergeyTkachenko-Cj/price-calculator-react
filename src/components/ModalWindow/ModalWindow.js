@@ -50,25 +50,35 @@ class ModalWindow extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     const {name, email} = this.state;
     const {base, dopi, id, dopiClick, basePrice, fullPrice} = this.props.prps[this.props.indx];
 
-    let baseName = base.filter((item, index) => !(index % 2))
-                        .map(i => `<p class="base_dop_item">${i}</p><hr>`);
+        const dataBase = b => b.filter((item, index) => !(index % 2));
 
-    let dopName = dopi.map(i => i[0])
-                      .filter((item, index) => dopiClick[index] && !(index % 2))
-                      .map(i => `<p class="base_dop_item">${i}</p><hr>`);
+        const dataDopi = d => d.map(i => typeof i[2] === 'string' ? 
+                                                      `${i[0]} + ${i[2]} - ${i[1]}&nbsp;р` : 
+                                                      `${i[0]} - ${i[1]}&nbsp;р`)                                        // for pdf
+                               .filter((item, index) => dopiClick[index] && !(index % 2));                           
 
-    const dopPrice = dopName.length ? 
-                      dopi.map(i => i[1])
-                          .filter((item, index) => dopiClick[index] && !(index % 2))
-                          .reduce((cur, acc) => cur + acc) : 0;
+    const basePdf = dataBase(base).map(i => `<p class="base_dop_item">${i}</p><hr>`);
+    const baseDocx = dataBase(base).join('<br />');
+    const dopiPdf = dataDopi(dopi).map(i => `<p class="base_dop_item">${i}</p><hr>`);
+    const dopiDocx = dataDopi(dopi).join('<br />');
 
-    const dopHead = dopName.length ? '<div class="serv_list_name">Дополнительные виды испытаний:</div>' : '';
+        const dopPrice = dopiPdf.length ? 
+                          dopi.map(i => i[1])
+                              .filter((item, index) => dopiClick[index] && !(index % 2))
+                              .reduce((cur, acc) => cur + acc) : 0;
 
-    const obj = {name: name, mail: email, lab: id, base: baseName, basePrice: basePrice, dopi: dopName, dopiPrice: dopPrice, dopiHead: dopHead, full: fullPrice, manager: this.props.mngr};
+    const dopHeadPdf = dopiPdf.length ? '<div class="serv_list_name">Дополнительные виды испытаний:</div>' : '';
+    const dopHeadDocx = 'Дополнительные виды испытаний:';
+
+    const dopNoItemsDocx = dopiPdf.length ? '' : 'ничего не выбрано';
+
+    // Pdf
+    const objClient = {name: name, mail: email, lab: id, base: basePdf, basePrice: basePrice, dopi: dopiPdf, dopiPrice: dopPrice, dopiHead: dopHeadPdf, full: fullPrice};
+    // Docx
+    const objManager = {name: name, mail: email, lab: id, base: baseDocx, basePrice: basePrice, dopi: dopiDocx, dopiPrice: dopPrice, dopiHead: dopHeadDocx, dopNoItems: dopNoItemsDocx, full: fullPrice, manager: this.props.mngr};
 
     if (this.handleValidation()) {
       this.setState({loading: !this.state.loading});
@@ -77,13 +87,13 @@ class ModalWindow extends Component {
       //   this.handleSuccess(1);
       //   this.setState({loading: false}); 
       // }, 4000); 
-      
-      this.handleAxios('https://calculator.argus.group/test.php', obj)
+
+      this.handleAxios('https://calculator.argus.group/test.php', objClient)
         .then(res => {
               if (res.data) {
                 this.handleSuccess(1);
                 this.setState({loading: false});
-                this.handleAxios('https://calculator.argus.group/kp_mail.php', obj)
+                this.handleAxios('https://calculator.argus.group/test2.php', objManager)
               }
               else { 
                 this.handleSuccess(-1);

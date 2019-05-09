@@ -9,7 +9,7 @@ const ManagerButton = props => {
             variant="outline-success"
             className="mngr-btn btn btn-outline-success"
             onClick={() => props.func(email)}>
-            <img src={pic} className="manager-pic" />
+            <img src={pic} className="manager-pic" alt='' />
             <div className="manager-nme">{name}</div>
         </Button>
     )

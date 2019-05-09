@@ -15,7 +15,7 @@ mysqli_query($db,'SET sql_mode = "";');
 mysqli_query($db,'SET group_concat_max_len = 4294967295;');
 
 if (!$db) $dber=mysqli_connect_error();
-$a=mysqli_fetch_row(mysqli_query($db,'SELECT cfile, ccontent, coalesce(ccontent_mime,\'application/force-download\'),ccontent_size,ccontent_ext FROM rl_templates where id=2073 and nid is null')); //2075 - docx, 2073 - pdf
+$a=mysqli_fetch_row(mysqli_query($db,'SELECT cfile, ccontent, coalesce(ccontent_mime,\'application/force-download\'),ccontent_size,ccontent_ext FROM rl_templates where id=2075 and nid is null')); //2075 - docx, 2073 - pdf
 if ($a[2]!='text/html')
 {$file = tempnam('tmp/', 'zip');
  $f=fopen($file,'w');
@@ -30,28 +30,45 @@ if (($a[2]=='text/html')or($zip->open($file) === TRUE))
  $content=1;
 
 
+function clear_all($s)
+{global $a;
+ if($a[2]=='text/html')
+ {return $s;
+  }
+ else
+ {
+  $s=str_replace(array('&nbsp;'),' ',$s);
+  return (str_replace(array('<br>','<br />','<br/>'),'</w:t><w:br/><w:t></w:t><w:br/><w:t>',$s));
+  }
+ }
+
 // -------------- NEW DATA --------------------------------
 
  $data = json_decode(file_get_contents("php://input"), true);
- $data['base']=implode($a[2]=='text/html'?'<br>':'</w:t><w:br/><w:t>', ($data['base']));
- $data['dopi']=implode($a[2]=='text/html'?'<br>':'</w:t><w:br/><w:t>', ($data['dopi']));
 
-foreach ($data as $i => $v) $data[$i]=str_replace('&hyphen;','-', $data[$i]);
- $name = $data['name'];
- $eMail = $data['mail'];
- $lab = $data['lab'];
- $base = $data['base'];
- $basePrice = $data['basePrice'];
- $dopi = $data['dopi'];
- $dopPrice = $data['dopiPrice'];
- $dopHead = $data['dopiHead'];
- $full = $data['full'];
+foreach ($data as $i => $v) {
+    $data[$i]=str_replace('&nbsp;',' ', $data[$i]);
+    $data[$i]=str_replace('&hyphen;','-', $data[$i]);
+    $data[$i]=str_replace('&shy;','', $data[$i]);
+}
+ $name = clear_all($data['name']);
+ $eMail = clear_all($data['mail']);
+ $lab = clear_all($data['lab']);
+ $base = clear_all($data['base']);
+ $basePrice = clear_all($data['basePrice']);
+ $dopi = clear_all($data['dopi']);
+ $dopPrice = clear_all($data['dopiPrice']);
+ $dopHead = clear_all($data['dopiHead']);
+ $dopNoItem = clear_all($data['dopNoItems']);
+ $full = clear_all($data['full']);
+ $manager = clear_all($data['manager']);
 
 // -----------------------------------------------------------
 
 $rp=array(
   '[client]'=>$name,
   '[dop_head]' => $dopHead,
+  '[dop_no]' => $dopNoItem,
   '[lab_kb]'=>$lab,
   '[basic_price]'=>$basePrice,
   '[basic_name]'=>$base,
@@ -61,6 +78,7 @@ $rp=array(
   '[email]'=>$eMail,
   '[\'client\']'=>$name,
   '[\'dop_head\']' => $dopHead,
+  '[\'dop_no\']' => $dopNoItem,
   '[\'lab_kb\']'=>$lab,
   '[\'basic_price\']'=>$basePrice,
   '[\'basic_name\']'=>$base,
@@ -70,6 +88,7 @@ $rp=array(
   '[\'email\']'=>$eMail,
   '[&apos;client&apos;]'=>$name,
   '[&apos;dop_head&apos;]' => $dopHead,
+  '[&apos;dop_no&apos;]' => $dopNoItem,
   '[&apos;lab_kb&apos;]'=>$lab,
   '[&apos;basic_price&apos;]'=>$basePrice,
   '[&apos;basic_name&apos;]'=>$base,
@@ -118,7 +137,7 @@ $rp=array(
 if ($content)
 {   
     $subject = 'Коммерческое предложение';
-    $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электорлаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество. Наш email: argus@argus.group и телефон: +7(495)585-09-82. Обращайтесь по любым вопросам.";
+    $message = "От: $name\n<br />\n<br />Почта: $eMail\n<br />\n<br />Лаборатория: $lab\n<br />\n<br />Доп.услуги сумма: $dopPrice\n<br />\n<br />Общая сумма: $full";
     $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'<br/></body></html>';
 
 //Load Composer's autoloader
@@ -137,7 +156,7 @@ try {
     //Recipients
     $mail->From='argus@argus.group';
     $mail->FromName='Группа компаний АРГУС';
-    $mail->addAddress($data['mail'], $data['name']);     // Add a recipient
+    $mail->addAddress($manager, $data['name']);     // Add a recipient
 
     //Attachments
     $mail->addStringAttachment($content,$a[0],'base64',$a[2].';  charset=utf-8');         // Add attachments

@@ -37,6 +37,10 @@ body {
   display: none;
 }
 
+.show-on-inline {
+  display: inline;
+}
+
 /* MANAGER SELECT */
 
 .manager-btn-block {
@@ -165,6 +169,10 @@ tbody {
 
 .dop-bg-color {
   background-color: rgb(193, 238, 229);
+}
+
+.special {
+  margin-top: 1rem;
 }
 
 .btn.btn-default span {
