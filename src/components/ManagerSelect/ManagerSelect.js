@@ -1,6 +1,6 @@
 import React from "react";
 import ManagerButton from './ManagerButton';
-import Maksim from '../../img/Maksim copy.jpeg';
+import Maksim from '../../img/Maksim.jpeg';
 import Irina from '../../img/Irina.jpeg';
 import Lubov from '../../img/Lubov.jpeg';
 import Leonid from '../../img/Leonid.jpeg';
