@@ -47,7 +47,7 @@ foreach ($data as $i => $v) $data[$i]=str_replace('&hyphen;','-', $data[$i]);
  $dopHead = $data['dopiHead'];
  $full = $data['full'];
 
-// -----------------------------------------------------------
+// ---------------------------------------------------------
 
 $rp=array(
   '[client]'=>$name,
@@ -126,11 +126,12 @@ require 'mailer/vendor/autoload.php';
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
     $mail->CharSet = 'UTF-8';
+    $mail->SMTPDebug = 2;
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'smtp.yandex.com';                      // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'argus@argus.group';                // SMTP username
-    $mail->Password = 'FD4qu9olwK';                       // SMTP password
+    $mail->Password = 'FD4qu9olwK';                       // SMTP password    
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to
 
@@ -142,7 +143,7 @@ try {
     //Attachments
     $mail->addStringAttachment($content,$a[0],'base64',$a[2].';  charset=utf-8');         // Add attachments
     //Content
-    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->isHTML(true);                                 // Set email format to HTML
     $mail->Subject = "=?UTF-8?B?".base64_encode($subject)."?=";
     $mail->Body    = $html;
     $mail->AltBody = $message;

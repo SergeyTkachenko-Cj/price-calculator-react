@@ -127,7 +127,7 @@ $rp=array(
  else if ($a[2]=='text/html')
  {
   require_once 'mpdf/vendor/autoload.php';
-  $mpdf = new \Mpdf\Mpdf(['tempDir' => 'tmp']); //__DIR__ . '/../tmp'
+  $mpdf = new \Mpdf\Mpdf(['tempDir' => 'tmp']);      //__DIR__ . '/../tmp'
   $mpdf->WriteHTML($c);
   if (isset($content)) $content=$mpdf->Output($a[0],'S');
   else $mpdf->Output($a[0],'D');
@@ -156,7 +156,7 @@ try {
     //Recipients
     $mail->From='argus@argus.group';
     $mail->FromName='Группа компаний АРГУС';
-    $mail->addAddress($manager, $data['name']);     // Add a recipient
+    $mail->addAddress($manager, $data['name']);           // Add a recipient
 
     //Attachments
     $mail->addStringAttachment($content,$a[0],'base64',$a[2].';  charset=utf-8');         // Add attachments

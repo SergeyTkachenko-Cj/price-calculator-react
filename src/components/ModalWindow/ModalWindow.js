@@ -57,7 +57,7 @@ class ModalWindow extends Component {
 
         const dataDopi = d => d.map(i => typeof i[2] === 'string' ? 
                                                       `${i[0]} + ${i[2]} - ${i[1]}&nbsp;р` : 
-                                                      `${i[0]} - ${i[1]}&nbsp;р`)                                        // for pdf
+                                                      `${i[0]} - ${i[1]}&nbsp;р`)                 // for pdf
                                .filter((item, index) => dopiClick[index] && !(index % 2));                           
 
     const basePdf = dataBase(base).map(i => `<p class="base_dop_item">${i}</p><hr>`);
@@ -86,6 +86,7 @@ class ModalWindow extends Component {
       // setTimeout(() => {                   // For testing in development
       //   this.handleSuccess(1);
       //   this.setState({loading: false}); 
+      //       console.log(objManager);
       // }, 4000); 
 
       this.handleAxios('https://calculator.argus.group/test.php', objClient)

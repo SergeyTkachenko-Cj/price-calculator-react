@@ -13,6 +13,11 @@ const ManagerSelect = props => {
                        {name: 'ШАНГИНА ЛЮБОВЬ', pic: Lubov, email: '130@argus-eko.ru'}, 
                        {name: 'МАМОТЛИВЫЙ ЛЕОНИД', pic: Leonid, email: '126@argus-eko.ru'}, 
                        {name: 'ДОБРОВОЛЬСКАЯ ЛИЛИЯ', pic: Liliya, email: '132@argus-eko.ru'}
+                    // {name: 'СОРОКИН МАКСИМ', pic: Maksim, email: 'tka4inni@gmail.com'}, 
+                    // {name: 'ЕРШОВА ИРИНА', pic: Irina, email: 'tka4inni@gmail.com'}, 
+                    // {name: 'ШАНГИНА ЛЮБОВЬ', pic: Lubov, email: 'tka4inni@gmail.com'}, 
+                    // {name: 'МАМОТЛИВЫЙ ЛЕОНИД', pic: Leonid, email: 'tka4inni@gmail.com'}, 
+                    // {name: 'ДОБРОВОЛЬСКАЯ ЛИЛИЯ', pic: Liliya, email: 'tka4inni@gmail.com'}
                       ];
 
     const mngrBtns = managers.map((item, index) => 
