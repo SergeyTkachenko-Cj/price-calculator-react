@@ -77,6 +77,41 @@ body {
 
 /* LAB BUTTONS */
 
+.dropdown {
+  text-align: center;
+}
+
+#dropdown-basic {
+  width: 100%;
+}
+
+.dropdown-menu.show {
+  width: 100%;
+}
+
+.btn-success {
+  background-color: #1d8a5b;
+  border-color: #1d8a5b
+}
+
+.btn-success.focus, .btn-success:focus {
+  color: #fff;
+  background-color: #1d8a5b;
+  border-color: #1d8a5b;
+  box-shadow: none;
+}
+
+.btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
+  background-color: #1d8a5b;
+  border-color: #1d8a5b;
+  box-shadow: none;
+}  
+
+.btn-success:hover {
+  background-color: #1d8a5b;
+  border-color: #1d8a5b;
+}
+
 .btn-outline-success:not(:disabled):not(.disabled).active:focus, 
 .btn-outline-success:not(:disabled):not(.disabled):active:focus, 
 .show>.btn-outline-success.dropdown-toggle:focus {

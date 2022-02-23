@@ -54,6 +54,15 @@ const List = [
         dopiClick: dop110.map(i => false),
         basePrice: 120000,
         fullPrice: 120000
+    },
+    {
+        id: '110 кВ',
+        clicked: false,
+        base: base110,
+        dopi: dop110,
+        dopiClick: dop110.map(i => false),
+        basePrice: 120000,
+        fullPrice: 120000
     }
 ]
 

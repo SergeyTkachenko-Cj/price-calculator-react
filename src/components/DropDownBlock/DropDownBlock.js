@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import List from '../List.js';
-import Dropdown from './Dropdown';
+import MyDropdown from './Dropdown';
 import ButtonSelect from './ButtonSelect';
 import ModalWindow from '../ModalWindow/ModalWindow';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 class DropDownBlock extends Component {
     state = {
@@ -86,10 +87,19 @@ class DropDownBlock extends Component {
                             'show-on dropDownCvr' : 
                             'show-off'
                             }>
-                <div className="btns-cvr">
+                {/* <div className="btns-cvr">
                     {par(ButtonSelect)}
-                </div>
-                {par(Dropdown)}
+                </div> */}
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        Выберите напряжение
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        {par(ButtonSelect)}
+                    </Dropdown.Menu>
+                </Dropdown>
+                {par(MyDropdown)}
                 <ModalWindow 
                     prps={this.state.services} 
                     offer={this.state.comOffer}
