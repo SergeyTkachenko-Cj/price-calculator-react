@@ -77,16 +77,29 @@ body {
 
 /* LAB BUTTONS */
 
+.show-on.dropDownCvr {
+  display: flex;
+  flex-direction: column;
+}
+
 .dropdown {
   text-align: center;
 }
 
 #dropdown-basic {
-  width: 100%;
+  width: 80%;
+  height: 3rem;
+}
+
+.dropdown-menu {
+  margin-bottom: 3rem;
 }
 
 .dropdown-menu.show {
-  width: 100%;
+  position: relative !important;
+  width: 80%;
+  transform: translate3d(80px, 0px, 0px) !important;
+  /* margin-bottom: 2rem !important; */
 }
 
 .btn-success {
@@ -559,7 +572,7 @@ transition: background-color 5000s ease-in-out 0s;
 
 /* MEDIA QUERIES */
 
-@media (max-width: 841px) {
+/* @media (max-width: 841px) {
   
         .sm {
           display: inline-block;
@@ -568,7 +581,7 @@ transition: background-color 5000s ease-in-out 0s;
         .lg {
           display: none;
         }
-}
+} */
 
 @media (max-width: 648px) {
 
