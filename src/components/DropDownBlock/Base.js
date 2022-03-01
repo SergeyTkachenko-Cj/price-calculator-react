@@ -1,8 +1,10 @@
 import React, {Fragment} from "react";
 
 const Base = props => {
-    const {base, basePrice} = props.prps.list;
+    const {id, base, basePrice} = props.prps.list;
     const arrBase = [];
+
+    // console.log(props.prps.list);
 
     const codec = attr => attr
                             .replace(/&shy;/g, "\u00AD")
@@ -23,6 +25,7 @@ const Base = props => {
     return(
         <Fragment>
             <div className="drop_head">
+                <div>{id}</div><br/>
                 <span>Базовые виды испытаний.<br/>
                 Стоимость: {basePrice}&nbsp;р.</span>
             </div>

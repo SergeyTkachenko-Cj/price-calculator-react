@@ -86,6 +86,10 @@ body {
   text-align: center;
 }
 
+.show.dropdown {
+  margin-bottom: 5rem;
+}
+
 #dropdown-basic {
   width: 80%;
   height: 3rem;
@@ -98,8 +102,11 @@ body {
 .dropdown-menu.show {
   position: relative !important;
   width: 80%;
-  transform: translate3d(80px, 0px, 0px) !important;
-  /* margin-bottom: 2rem !important; */
+  margin-top: -1rem !important;
+}
+
+.dropdown-toggle::after {
+  display: none;
 }
 
 .btn-success {
@@ -242,6 +249,15 @@ tbody {
   text-align: center;
   line-height: 40px;
   color: #2F4858;
+}
+
+.drop_head div {
+  font-family: 'Open Sans', 'Trebuchet MS', serif;
+  font-size: 30px;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: underline;
+  color: #1d8a5b;
 }
 
 .h_sum {
@@ -674,7 +690,7 @@ transition: background-color 5000s ease-in-out 0s;
 
 @media (max-width: 318px) {
 
-        .dropDownCvr,
+        .show-on.dropDownCvr,
         .cours_slogan,
         .manager-btn-block {
           display: none;

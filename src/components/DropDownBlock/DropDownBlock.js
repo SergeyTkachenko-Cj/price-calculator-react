@@ -82,6 +82,8 @@ class DropDownBlock extends Component {
                 />
         )}
 
+        // console.log(this.state.services);
+
         return (
             <div className={this.props.prps.manager ? 
                             'show-on dropDownCvr' : 
@@ -92,7 +94,7 @@ class DropDownBlock extends Component {
                 </div> */}
                 <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Выберите напряжение
+                        Выберите напряжение ⚡️
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
