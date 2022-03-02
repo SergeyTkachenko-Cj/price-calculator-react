@@ -3,11 +3,13 @@ import base10 from './services_arr/base10';
 import base20 from './services_arr/base20';
 import base35 from './services_arr/base35';
 import base110 from './services_arr/base110';
+import base220 from './services_arr/base220';
 import dop1 from './services_arr/dop1';
 import dop10 from './services_arr/dop10';
 import dop20 from './services_arr/dop20';
 import dop35 from './services_arr/dop35';
 import dop110 from './services_arr/dop110';
+import dop220 from './services_arr/dop220';
 
 const List = [
     {
@@ -56,11 +58,11 @@ const List = [
         fullPrice: 120000
     },
     {
-        id: '110 кВ',
+        id: '220 кВ',
         clicked: false,
-        base: base110,
-        dopi: dop110,
-        dopiClick: dop110.map(i => false),
+        base: base220,
+        dopi: dop220,
+        dopiClick: dop220.map(i => false),
         basePrice: 120000,
         fullPrice: 120000
     }

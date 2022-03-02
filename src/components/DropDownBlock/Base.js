@@ -24,8 +24,9 @@ const Base = props => {
 
     return(
         <Fragment>
+            <div className="drop_head_id">{id}</div><br/>
             <div className="drop_head">
-                <div>{id}</div><br/>
+                {/* <div>{id}</div><br/> */}
                 <span>Базовые виды испытаний.<br/>
                 Стоимость: {basePrice}&nbsp;р.</span>
             </div>

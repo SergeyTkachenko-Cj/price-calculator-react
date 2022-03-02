@@ -93,6 +93,8 @@ body {
 #dropdown-basic {
   width: 80%;
   height: 3rem;
+  outline-offset: 3px;
+  outline: 1px solid #1d8a5b;
 }
 
 .dropdown-menu {
@@ -134,10 +136,23 @@ body {
 
 .btn-outline-success:not(:disabled):not(.disabled).active:focus, 
 .btn-outline-success:not(:disabled):not(.disabled):active:focus, 
-.show>.btn-outline-success.dropdown-toggle:focus {
+.show>.btn-outline-success.dropdown-toggle:focus,
+.btn-success:not(:disabled):not(.disabled):active:focus, 
+.show>.btn-success.dropdown-toggle:focus {
   box-shadow: none;
   border-color: #1d8a5b;
-  background-color: #1d8a5b;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:active, 
+.show>.btn-success.dropdown-toggle:active {
+  border: 1px solid #fff;
+  transition: none;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  border-color: #1d8a5b;
+  background-color: #fff;
 }
 
 .btn-outline-success:not(:disabled):not(.disabled).active, 
@@ -171,6 +186,7 @@ body {
   color: #2F4858;
   outline: none;
   overflow: hidden;
+  transition: none;
 }
 
 .btns-cvr {
@@ -251,7 +267,7 @@ tbody {
   color: #2F4858;
 }
 
-.drop_head div {
+.drop_head_id {
   font-family: 'Open Sans', 'Trebuchet MS', serif;
   font-size: 30px;
   text-align: center;
