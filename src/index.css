@@ -276,6 +276,10 @@ tbody {
   color: #1d8a5b;
 }
 
+.dropdown-menu .cours_btn {
+  font-size: large;
+}
+
 .h_sum {
   margin-bottom: 4em;
 }
