@@ -89,14 +89,14 @@ class ModalWindow extends Component {
       //       console.log(objManager);
       // }, 4000); 
 
-      // this.handleAxios('https://calculator.argus.group/test.php', objClient)
-      this.handleAxios('https://playground.argus-eko.ru/test.php', objClient)
+      // this.handleAxios('https://playground.argus-eko.ru/test.php', objClient)
+      this.handleAxios('https://calculator.argus.group/test.php', objClient)
         .then(res => {
               if (res.data) {
                 this.handleSuccess(1);
                 this.setState({loading: false});
-                // this.handleAxios('https://calculator.argus.group/test2.php', objManager)
-                this.handleAxios('https://playground.argus-eko.ru/test2.php', objManager)
+                // this.handleAxios('https://playground.argus-eko.ru/test2.php', objManager)
+                this.handleAxios('https://calculator.argus.group/test2.php', objManager)
               }
               else { 
                 this.handleSuccess(-1);

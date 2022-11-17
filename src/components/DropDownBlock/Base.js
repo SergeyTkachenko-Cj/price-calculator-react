@@ -4,8 +4,6 @@ const Base = props => {
     const {id, base, basePrice} = props.prps.list;
     const arrBase = [];
 
-    // console.log(props.prps.list);
-
     const codec = attr => attr
                             .replace(/&shy;/g, "\u00AD")
                             .replace(/&nbsp;/g, "\u00A0")

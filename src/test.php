@@ -118,7 +118,7 @@ $rp=array(
 if ($content)
 {   
     $subject = 'Коммерческое предложение';
-    $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электорлаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество. Наш email: argus@argus.group и телефон: +7(495)585-09-82. Обращайтесь по любым вопросам.";
+    $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электролаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество. Наш email: argus@argus.group и телефон: +7(495)585-09-82. Обращайтесь по любым вопросам.";
     $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'<br/></body></html>';
 
 //Load Composer's autoloader
@@ -131,7 +131,7 @@ try {
     $mail->Host = 'smtp.yandex.com';                      // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'argus@argus.group';                // SMTP username
-    $mail->Password = 'ARkeyf20';                         // SMTP password    
+    $mail->Password = 'ARkeyf31';                         // SMTP password    
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to
 
