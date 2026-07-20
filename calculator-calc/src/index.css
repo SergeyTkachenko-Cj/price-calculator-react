@@ -45,9 +45,11 @@ body {
 /* MANAGER SELECT */
 
 .manager-btn-block {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .manager-btn-block button {
@@ -625,16 +627,14 @@ transition: background-color 5000s ease-in-out 0s;
 
 /* MEDIA QUERIES */
 
-/* @media (max-width: 841px) {
+@media (max-width: 885px) {
   
-        .sm {
-          display: inline-block;
+        .manager-btn-block {
+          display: grid;
+          grid-template-columns: 1fr;
+          justify-items: center;
         }
-
-        .lg {
-          display: none;
-        }
-} */
+}
 
 @media (max-width: 648px) {
 
