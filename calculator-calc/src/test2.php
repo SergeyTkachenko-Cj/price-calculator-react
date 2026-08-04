@@ -7,8 +7,10 @@ header('Pragma: public'); // required
 setlocale(LC_ALL, "ru_RU.UTF8", "ru_RU.UTF-8", "ru_RU.utf8", "ru_RU.utf-8");
 setlocale(LC_NUMERIC, 'C');
 mb_internal_encoding('utf-8');
-// $db=@mysqli_connect('151.248.115.183','vh66872_arguseko','z0snwj3h','vh66872_argusdb');
-$db=@mysqli_connect('89.108.88.73','vh66872_arguseko','z0snwj3h','vh66872_argusdb');
+// $db=@mysqli_connect('89.108.88.73','vh66872_arguseko','ttYiAiTLnMC498rM','vh66872_new_argus');
+// $db=@mysqli_connect('89.108.88.73','vh66872_arguseko','z0snwj3h','vh66872_argusdb');
+// $db = mysqli_connect('127.0.0.1', 'u0543198_calculator_user', 'jF9uO1jO9neG5lC6', 'u0543198_calculator', 3310 );
+$db=@mysqli_connect('dbforall.ru','vh66872_arguseko','z0snwj3h','vh66872_argusdb');
 mysqli_query($db,'SET NAMES utf8 COLLATE \'utf8_general_ci\';');
 mysqli_query($db,'SET character_set_client = utf8;');
 mysqli_query($db,'SET CHARACTER_SET_RESULTS=utf8;');
@@ -146,32 +148,51 @@ require 'mailer/vendor/autoload.php';
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
     $mail->CharSet = 'UTF-8';
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.mail.com';                      // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'argus@argus.group';                // SMTP username
-    $mail->Password = 'Q8vaRwPRvy8h0O6fXgUg';             // SMTP password
-    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 465;                                    // TCP port to connect to
+    
+    $mail->SMTPDebug = 0;
+    
+    $mail->isSMTP();
 
-    //Recipients
-    $mail->From='argus@argus.group';
-    $mail->FromName='Группа компаний АРГУС';
-    $mail->addAddress($manager, $data['name']);           // Add a recipient
+    // резервный SMTP Mail.ru
+    // $mail->Host = 'smtp.mail.ru';                     
+    // $mail->SMTPAuth = true;                               
+    // $mail->Username = 'argus-calculator@mail.ru';              
+    // $mail->Password = 'LMDoNDSunSKCrJPEoSjC';                     
+    // $mail->SMTPSecure = 'ssl';                           
+    // $mail->Port = 465;    
+    
+    $mail->Host = 'mail.yatsuk.pro';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'admin@argus.group';
+    $mail->Password = 'kjdcaqagadmlnfxj';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+
+    // Recipients
+    // $mail->From='argus-calculator@mail.ru';
+    // $mail->FromName='Группа компаний АРГУС'; 
+    $mail->setFrom('admin@argus.group', 'Группа компаний АРГУС', false);
+
+    $mail->addAddress($manager, $data['name']);  
+    // $mail->addAddress('tka4inni@gmail.com', 'Test');
 
     //Attachments
     $mail->addStringAttachment($content,$a[0],'base64',$a[2].';  charset=utf-8');         // Add attachments
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = "=?UTF-8?B?".base64_encode($subject)."?=";
+    $mail->Subject = $subject;
     $mail->Body    = $html;
-    $mail->AltBody = $message;
+    $mail->AltBody = html_entity_decode(strip_tags($html), ENT_QUOTES, 'UTF-8');
     $mail->send();
     $return = true;
     echo json_encode($return);
 } catch (Exception $e) {
-    $return = false;
-    echo json_encode($return);
+    echo "<pre>";
+    echo "PHPMailer Error:\n";
+    echo $mail->ErrorInfo . "\n\n";
+    echo "Exception:\n";
+    echo $e->getMessage();
+    echo "</pre>";
 }
 }
 ?>

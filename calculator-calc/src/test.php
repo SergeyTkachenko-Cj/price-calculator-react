@@ -1,4 +1,4 @@
-<?php 
+<?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 header('Pragma: public'); // required
@@ -7,8 +7,12 @@ header('Pragma: public'); // required
 setlocale(LC_ALL, "ru_RU.UTF8", "ru_RU.UTF-8", "ru_RU.utf8", "ru_RU.utf-8");
 setlocale(LC_NUMERIC, 'C');
 mb_internal_encoding('utf-8');
-// $db=@mysqli_connect('151.248.115.183','vh66872_arguseko','z0snwj3h','vh66872_argusdb');
-$db=@mysqli_connect('89.108.88.73','vh66872_arguseko','z0snwj3h','vh66872_argusdb');
+// $db=@mysqli_connect('89.108.88.73','vh66872_arguseko','ttYiAiTLnMC498rM','vh66872_new_argus');
+// $db=@mysqli_connect('89.108.88.73','vh66872_arguseko','z0snwj3h','vh66872_argusdb');
+$db=@mysqli_connect('dbforall.ru','vh66872_arguseko','z0snwj3h','vh66872_argusdb');
+if (!$db) {
+    die('Ошибка подключения к БД: ' . mysqli_connect_error());
+}
 mysqli_query($db,'SET NAMES utf8 COLLATE \'utf8_general_ci\';');
 mysqli_query($db,'SET character_set_client = utf8;');
 mysqli_query($db,'SET CHARACTER_SET_RESULTS=utf8;');
@@ -17,6 +21,7 @@ mysqli_query($db,'SET group_concat_max_len = 4294967295;');
 
 if (!$db) $dber=mysqli_connect_error();
 $a=mysqli_fetch_row(mysqli_query($db,'SELECT cfile, ccontent, coalesce(ccontent_mime,\'application/force-download\'),ccontent_size,ccontent_ext FROM rl_templates where id=2073 and nid is null')); //2075 - docx, 2073 - pdf
+
 if ($a[2]!='text/html')
 {$file = tempnam('tmp/', 'zip');
  $f=fopen($file,'w');
@@ -119,25 +124,36 @@ $rp=array(
 if ($content)
 {   
     $subject = 'Коммерческое предложение';
-    $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электролаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество. Наш email: argus@argus.group и телефон: +7(495)585-09-82. Обращайтесь по любым вопросам.";
-    $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'<br/></body></html>';
+    $message = "Уважаемый {$name}. Высылаем Вам коммерческое предложение по регистрации электролаборатории (в приложении этого письма) и надеемся на долгосрочное сотрудничество";
+    $msg = "Наш email: argus@argus.group и телефон: +7(495)585-09-82.";
+    $mssg = "Обращайтесь по любым вопросам.";
+    $html = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>'.$message.'<br/><br/>'.$msg.'<br/><br/>'.$mssg.'<br/></body></html>';
 
 //Load Composer's autoloader
 require 'mailer/vendor/autoload.php';
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+$mail->CharSet = 'UTF-8';
 try {
-    $mail->CharSet = 'UTF-8';
-    $mail->SMTPDebug = 2;
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.mail.com';                        // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'argus@argus.group';                // SMTP username
-    $mail->Password = 'Q8vaRwPRvy8h0O6fXgUg';             // SMTP password    
-    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 465;                                    // TCP port to connect to
+    $mail->Debugoutput = 'html';
+    
+    // резервный SMTP Mail.ru
+    // $mail->Host = 'smtp.mail.ru';                   
+    // $mail->SMTPAuth = true;                              
+    // $mail->Username = 'argus-calculator@mail.ru';            
+    // $mail->Password = 'LMDoNDSunSKCrJPEoSjC';                        
+    // $mail->SMTPSecure = 'ssl';                          
+    // $mail->Port = 465;                                 
+    
+    $mail->Host = 'mail.yatsuk.pro';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'admin@argus.group';
+    $mail->Password = 'kjdcaqagadmlnfxj';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
 
     //Recipients
-    $mail->From='argus@argus.group';
+    $mail->From='admin@argus.group';
     $mail->FromName='Группа компаний АРГУС';
     $mail->addAddress($data['mail'], $data['name']);     // Add a recipient
 
@@ -152,8 +168,10 @@ try {
     $return = true;
     echo json_encode($return);
 } catch (Exception $e) {
-    $return = false;
-    echo json_encode($return);
+    echo '<pre>';
+    echo 'PHPMailer Error: ' . $mail->ErrorInfo . PHP_EOL;
+    echo 'Exception: ' . $e->getMessage();
+    echo '</pre>';
 }
 }
 ?>
