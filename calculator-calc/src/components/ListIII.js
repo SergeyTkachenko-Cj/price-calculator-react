@@ -47,7 +47,7 @@ const ListIII = [
         fullPrice: 145000
     },
     {
-        id: '110 кВ',
+        id: 'от 110 кВ',
         clicked: false,
         base: base110,
         dopi: dop110,
